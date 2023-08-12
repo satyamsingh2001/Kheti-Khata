@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "782586823013",
+    "project_id": "khetikhata-2da46",
+    "storage_bucket": "khetikhata-2da46.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:782586823013:android:4a8ded3472698030f4218c",
+        "android_client_info": {
+          "package_name": "com.example.khetikhata"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "782586823013-melcsu21j4a147f8lbuqpi0d736sojhu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4ok6GimFRmXizbSeZEq6FyGKQ87URfJk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "782586823013-melcsu21j4a147f8lbuqpi0d736sojhu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
