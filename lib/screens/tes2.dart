@@ -1,93 +1,104 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 
-
-class MyHomePage extends StatefulWidget {
+class Testing extends StatelessWidget {
   @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
-  void _showPersistentBottomSheet(BuildContext context) {
-    _scaffoldKey.currentState?.showBottomSheet(
-          (BuildContext context) {
-        return Container(
-          height: 200,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                'Persistent BottomSheet Example',
-                style: TextStyle(fontSize: 24),
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).pop(); // Close the BottomSheet
-                },
-                child: Text('Close'),
-              ),
-            ],
-          ),
-        );
-      },
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: [
+        Locale('en', 'US'), // English
+        Locale('hi', 'IN'), // Hindi
+      ],
+      title: 'Language Selection',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: LanguageSelectionPage(),
     );
   }
+}
 
-  void _showModalBottomSheet(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      builder: (BuildContext context) {
-        return Container(
-          height: 200,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                'Modal BottomSheet Example',
-                style: TextStyle(fontSize: 24),
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).pop(); // Close the BottomSheet
-                },
-                child: Text('Close'),
-              ),
-            ],
-          ),
-        );
-      },
-    );
+class LanguageSelectionPage extends StatefulWidget {
+  @override
+  _LanguageSelectionPageState createState() => _LanguageSelectionPageState();
+}
+
+class _LanguageSelectionPageState extends State<LanguageSelectionPage> {
+  String selectedLanguage = '';
+
+  void navigateToNextPage() {
+    if (selectedLanguage.isNotEmpty) {
+      // Navigate to the next page based on the selected language
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => NextPage(selectedLanguage)),
+      );
+    } else {
+      // Show an error message or handle the case where no language is selected
+      print("Please select a language!");
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _scaffoldKey,
       appBar: AppBar(
-        title: Text('BottomSheet Examples'),
+        title: Text('Select Preferred Language'),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          RadioListTile(
+            title: Text('English'),
+            value: 'en',
+            groupValue: selectedLanguage,
+            onChanged: (value) {
+              setState(() {
+                selectedLanguage = value??"";
+              });
+            },
+          ),
+          RadioListTile(
+            title: Text('Hindi'),
+            value: 'hi',
+            groupValue: selectedLanguage,
+            onChanged: (value) {
+              setState(() {
+                selectedLanguage = value??"";
+              });
+            },
+          ),
+          SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: navigateToNextPage,
+            child: Text('Next'),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class NextPage extends StatelessWidget {
+  final String selectedLanguage;
+
+  NextPage(this.selectedLanguage);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Next Page'),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            ElevatedButton(
-              onPressed: () {
-                _showPersistentBottomSheet(context);
-              },
-              child: Text('Show Persistent BottomSheet'),
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                _showModalBottomSheet(context);
-              },
-              child: Text('Show Modal BottomSheet'),
-            ),
-          ],
+        child: Text(
+          'Selected Language: $selectedLanguage',
+          style: TextStyle(fontSize: 20),
         ),
       ),
     );

@@ -119,6 +119,7 @@ class CommentPage extends StatelessWidget {
                     children: [
                       Expanded(
                         child: TextFormField(
+                          maxLines: null,
                           cursorColor: AppColors.primary60,
                           decoration: InputDecoration(
                             hintText: "Write here".tr,

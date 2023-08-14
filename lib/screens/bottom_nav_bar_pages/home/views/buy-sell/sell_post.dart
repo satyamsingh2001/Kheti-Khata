@@ -141,9 +141,9 @@ class _SellPostState extends State<SellPost> {
                   ),
                 ),
                 const SizedBox(height: 10,),
-                ConsTextField("", "","Noida Uttar Pradesh",1),
+                ConsTextField("", "","Noida Uttar Pradesh",1,TextInputType.phone),
                 const SizedBox(height: 10,),
-                ConsTextField("/ $unit1", "₹","Price / Unit",1),
+                ConsTextField("/ $unit1", "₹","Price / Unit",1,TextInputType.phone),
                 Row(
                   children: [
                     CustomRadioButton("Kg", 1, 1),
@@ -152,7 +152,7 @@ class _SellPostState extends State<SellPost> {
                   ],
                 ),
                 const SizedBox(height: 10,),
-                ConsTextField("/ $unit2", "","Quantity",1),
+                ConsTextField("/ $unit2", "","Quantity",1,TextInputType.phone),
                 Row(
                   children: [
                     CustomRadioButton("Kg", 1, 2),
@@ -160,7 +160,7 @@ class _SellPostState extends State<SellPost> {
                     CustomRadioButton("Ton", 3, 2),
                   ],
                 ),
-                ConsTextField("", "","Description",5),
+                ConsTextField("", "","Description",5,TextInputType.text),
                 const SizedBox(height: 10,),
                 ConstantContainer(
                   borderColor: AppColors.white50,
@@ -225,10 +225,11 @@ class _SellPostState extends State<SellPost> {
     );
   }
 
-  Widget ConsTextField(suffix, prefix,hinttext,maxline) {
+  Widget ConsTextField(suffix, prefix,hinttext,maxline,keytype) {
     return TextFormField(
       maxLines: maxline,
       cursorColor: AppColors.primary60,
+      keyboardType: keytype,
       decoration: InputDecoration(
         border: const OutlineInputBorder(),
         enabledBorder: const OutlineInputBorder(

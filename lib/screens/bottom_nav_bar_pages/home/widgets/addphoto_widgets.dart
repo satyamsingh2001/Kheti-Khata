@@ -34,80 +34,86 @@ class _AddPhotoWidgetState extends State<AddPhotoWidget> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Row(
-            // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          child: Wrap(
             children: [
-              if (_selectedPhotos.length < 6)
-                InkWell(
-                    onTap: () {
-                      _selectPhoto();
-                    },
-                    child: ConstantContainer(
-                      height: 100,
-                      width: 80,
-                      radiusBorder: 5,
-                      borderColor: AppColors.white50,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          CircleAvatar(
-                            radius: 15,
-                            backgroundColor: AppColors.primary60,
-                            child: Icon(
-                              Icons.add,
-                              color: AppColors.white,
+              if (_selectedPhotos.length < 5)
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: InkWell(
+                      onTap: () {
+                        _selectPhoto();
+                      },
+                      child: ConstantContainer(
+                        height: 100,
+                        width: 80,
+                        radiusBorder: 5,
+                        borderColor: AppColors.white50,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            CircleAvatar(
+                              radius: 15,
+                              backgroundColor: AppColors.primary60,
+                              child: Icon(
+                                Icons.add,
+                                color: AppColors.white,
+                              ),
+                            ),
+                            Text(
+                              "Add photos",
+                              style: AppTextStyles.kBody15RegularTextStyle
+                                  .copyWith(color: AppColors.white70),
+                            )
+                          ],
+                        ),
+                      )),
+                ),
+                Wrap(
+                  alignment: WrapAlignment.start,
+                  spacing: 8.0,
+                  runSpacing: 8.0,
+                  children: _selectedPhotos.map((file) {
+                    return Stack(
+                      alignment: Alignment.topRight,
+                      children: [
+                        Container(
+                          width: size.width/4,
+                          height: 200,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            image: DecorationImage(
+                              image: FileImage(file),
+                              fit: BoxFit.cover,
                             ),
                           ),
-                          Text(
-                            "Add photos",
-                            style: AppTextStyles.kBody15RegularTextStyle
-                                .copyWith(color: AppColors.white70),
-                          )
-                        ],
-                      ),
-                    )),
-              for (int i = _selectedPhotos.length - 1; i >= 0; i--)
-                Stack(
-                  alignment: Alignment.topRight,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        width: 80,
-                        height: 100,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          image: DecorationImage(
-                            image: FileImage(_selectedPhotos[i]),
-                            fit: BoxFit.cover,
+                        ),
+                        Positioned(
+                          right: 10,
+                          top: 5,
+                          child: CircleAvatar(
+                            radius: 15,
+                            backgroundColor: Color(0xff554f51),
+                            child: IconButton(
+                              icon: Icon(
+                                Icons.clear,
+                                size: 10,
+                              ),
+                              onPressed: () {
+                                _clearPhoto(_selectedPhotos.indexOf(file));
+                              },
+                            ),
                           ),
                         ),
-                      ),
-                    ),
-                    Positioned(
-                      right: 10,
-                      top: 5,
-                      child: CircleAvatar(
-                        radius: 15,
-                        backgroundColor: Color(0xff554f51),
-                        child: IconButton(
-                          icon: Icon(
-                            Icons.clear,
-                            size: 10,
-                          ),
-                          onPressed: () {
-                            _clearPhoto(i);
-                          },
-                        ),
-                      ),
-                    ),
-                  ],
+                      ],
+                    );
+                  }).toList(),
                 ),
             ],
           ),

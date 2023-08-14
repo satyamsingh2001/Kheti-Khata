@@ -7,9 +7,15 @@ import 'package:khetikhata/screens/auth/login_screen.dart';
 import 'package:khetikhata/styles/textstyle_const.dart';
 import 'package:khetikhata/utils/Utils.dart';
 
-class ChooseLang extends StatelessWidget {
+class ChooseLang extends StatefulWidget {
   const ChooseLang({Key? key}) : super(key: key);
 
+  @override
+  State<ChooseLang> createState() => _ChooseLangState();
+}
+
+class _ChooseLangState extends State<ChooseLang> {
+  int value =0;
   @override
   Widget build(BuildContext context) {
     final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -17,54 +23,62 @@ class ChooseLang extends StatelessWidget {
     String selectedValue = 'English';
     return Scaffold(
       body: Center(
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: [
-              SizedBox(height: size.height*.4,),
-              const Text("Select Language",style: AppTextStyles.kBody15SemiboldTextStyle,),
-              SizedBox(height: size.height*.01,),
-              ConstantContainer(
-                radiusBorder: 30,
-                width: size.width*.5,
-                borderColor: AppColors.white100,
-                borderWidth: 1,
-                child: ConstantDropdown(
-                  options: const [ "English", "हिंदी"],
-                  selectedOption: selectedValue,
-                  onChanged: (value) {
-                    selectedValue = value;
-                  },
-                  iconColor: AppColors.white100,
-                  dropdownColor: AppColors.white,
-                  textColor: AppColors.white100,
-                  validator: (value) {
-                    if (value == null) {
-                      return 'Please select an option';
-                    }
-                    return null;
-                  },
-                ),
-              ),
-              SizedBox(height: 16),
-              InkWell(
-                onTap: () {
-                  if (_formKey.currentState!.validate()) {
-                    var locale = selectedValue == 'English' ? Locale('en', '') : Locale('hi', '');
-                    Get.updateLocale(locale);
-                    Utils.replacement(context, LoginScreen());
-                  }
-                },
-                child: ConstantContainer(
-                  color: AppColors.primary60,
-                  radiusBorder: 20,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25.0,vertical: 10),
-                    child: Text('Next',style: AppTextStyles.kBody15RegularTextStyle.copyWith(color: AppColors.white),),
+        child: Column(
+          children: [
+            SizedBox(height: size.height*.4,),
+            const Text("Select Your Preferred Language",style: AppTextStyles.kBody15SemiboldTextStyle,),
+            SizedBox(height: size.height*.01,),
+            CustomRadioButton("English",1,context),
+            CustomRadioButton("हिंदी",2,context),
+            SizedBox(height: 26),
+            GestureDetector(
+              onTap: () {
+                if (value != 0) { // Check if a language is selected
+                  var locale = value == 1 ? Locale('en', '') : Locale('hi', '');
+                  Get.updateLocale(locale);
+                  Utils.replacement(context, LoginScreen());
+                }
+              },
+              child: ConstantContainer(
+                color: value != 0 ? AppColors.primary60 : AppColors.white50, // Adjust button color based on selection
+                radiusBorder: 20,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 10),
+                  child: Text(
+                    'Next',
+                    style: AppTextStyles.kBody15RegularTextStyle.copyWith(color: AppColors.white),
                   ),
                 ),
-              )
-            ],
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget CustomRadioButton(String text, int index,BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: InkWell(
+        onTap: () {
+          setState(() {
+            value = index;
+          });
+        },
+        child: ConstantContainer(
+          height: MediaQuery.of(context).size.height*.05,
+          width: MediaQuery.of(context).size.width/1.5,
+          radiusBorder: 20,
+          color: (value == index) ? AppColors.primary60 : AppColors.white ,
+          borderColor: AppColors.white50,
+          child: Center(
+            child: Text(
+              text,
+              style: TextStyle(
+                color: (value== index) ? AppColors.white : AppColors.white100,fontWeight: FontWeight.bold
+              ),
+            ),
           ),
         ),
       ),

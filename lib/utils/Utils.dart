@@ -92,12 +92,26 @@ class Utils{
         timeInSecForIosWeb: 5);
   }
 
-
-
   Widget progressIndicator(BuildContext context){
     return Center(child:CircularProgressIndicator(
       backgroundColor: AppColors.primary,
       color: Colors.white,
+    ));
+  }
+
+  static DialogBoxConfirm(BuildContext context ,String title,String content,Widget widget){
+    showDialog(context: context, builder: (context)=>AlertDialog(
+      // title: Text(title),
+      content: Text(content),
+      actions: [
+        TextButton(
+          child: Text('Cancel',style: AppTextStyles.kBody15SemiboldTextStyle.copyWith(color: AppColors.white100),),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        widget,
+      ],
     ));
   }
 

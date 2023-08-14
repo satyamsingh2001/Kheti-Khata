@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:khetikhata/screens/choose_lang_page.dart';
+
 import 'lang/languages.dart';
 
 void main() async {

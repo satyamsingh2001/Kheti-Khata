@@ -38,25 +38,25 @@ class ConstCreatePostWidget extends StatelessWidget {
         notification.disallowIndicator();
         return true;
       },
-      child: ListView(
+      child: Column(
         children: [
           ListTile(
             titleAlignment: ListTileTitleAlignment.center,
             title: Text("Create a Post".tr,style: AppTextStyles.kBody20SemiboldTextStyle.copyWith(color: AppColors.white100),),
             subtitle: Text( "What do you want to post?".tr,style: AppTextStyles.kCaption12RegularTextStyle.copyWith(color: AppColors.white60),),
-            trailing:IconButton(onPressed: (){
-              Navigator.pop(context);
-            }, icon:const Material(
-                elevation: 5.0, // Adjust the elevation as needed
-                shape: CircleBorder(),
-                clipBehavior: Clip.antiAlias,
-                child: Icon(CupertinoIcons.multiply,size: 30,))) ,
-
+            trailing:Material(
+              elevation: 5,
+              shape: const CircleBorder(),
+              clipBehavior: Clip.antiAlias,
+              child: IconButton(onPressed: (){
+                Navigator.pop(context);
+              }, icon: const Icon(CupertinoIcons.multiply)),
+            ),
           ),
           const Divider(color: AppColors.white40,thickness: 1,),
           ListView.builder(
               shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
+              physics: const AlwaysScrollableScrollPhysics(),
               itemCount: 3,
               itemBuilder: (context,index) {
                 return Padding(
