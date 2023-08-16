@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class LanguageController extends GetxController {
   static LanguageController to = Get.find();
 
-  var locale = Locale('en', '');
+  var locale = const Locale('en', '');
 
   void changeLanguage(Locale newLocale) async {
     locale = newLocale;

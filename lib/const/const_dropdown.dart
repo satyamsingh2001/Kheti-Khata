@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:khetikhata/colors/colors_const.dart';
 import '../styles/textstyle_const.dart';
 
 class ConstantDropdown extends StatefulWidget {
@@ -33,6 +32,7 @@ class _ConstantDropdownState extends State<ConstantDropdown> {
   Widget build(BuildContext context) {
     return DropdownButtonHideUnderline(
       child: DropdownButtonFormField<String>(
+        hint: Text(widget.hint??""),
         decoration: const InputDecoration(
           enabledBorder: InputBorder.none,
           focusedBorder: InputBorder.none,

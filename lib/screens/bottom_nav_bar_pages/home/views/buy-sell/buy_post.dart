@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:khetikhata/colors/colors_const.dart';
 import 'package:khetikhata/const/constContainer.dart';
 import 'package:khetikhata/const/const_dropdown.dart';
-import 'package:khetikhata/screens/bottom_nav_bar.dart';
 import 'package:khetikhata/styles/textstyle_const.dart';
-import '../../../../../utils/Utils.dart';
-import '../../widgets/addphoto_widgets.dart';
 
 class BuyPost extends StatefulWidget {
   const BuyPost({Key? key}) : super(key: key);
@@ -126,6 +123,7 @@ class _BuyPostState extends State<BuyPost> {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: ConstantDropdown(
+                      hint: "Select Commodityss",
                       options: const ["Select Commodity", "Onion", "Nasik Onion", "Rajasthan Onion", "MP Onion"],
                       selectedOption: isSelect,
                       onChanged: (value) {
@@ -140,13 +138,13 @@ class _BuyPostState extends State<BuyPost> {
                   ),
                 ),
                 const SizedBox(height: 10,),
-                ConsTextField("", "","Noida Uttar Pradesh",1),
+                ConsTextField("", "","Noida Uttar Pradesh",1,TextInputType.phone),
                 const SizedBox(height: 10,),
                 Row(
                   children: [
-                    Expanded(child: ConsTextField("/ $unit1", "₹","Min Price",1)),
+                    Expanded(child: ConsTextField("/ $unit1", "₹","Min Price",1,TextInputType.phone)),
                     SizedBox(width: 10,),
-                    Expanded(child: ConsTextField("/ $unit1", "₹","Max Price",1)),
+                    Expanded(child: ConsTextField("/ $unit1", "₹","Max Price",1,TextInputType.phone)),
                   ],
                 ),
                 Row(
@@ -157,7 +155,7 @@ class _BuyPostState extends State<BuyPost> {
                   ],
                 ),
                 const SizedBox(height: 10,),
-                ConsTextField("/ $unit2", "","Quantity",1),
+                ConsTextField("/ $unit2", "","Quantity",1,TextInputType.phone),
                 Row(
                   children: [
                     CustomRadioButton("Kg", 1, 2),
@@ -165,7 +163,7 @@ class _BuyPostState extends State<BuyPost> {
                     CustomRadioButton("Ton", 3, 2),
                   ],
                 ),
-                ConsTextField("", "","Description",5),
+                ConsTextField("", "","Description",5,TextInputType.text),
                 SizedBox(height: 10,),
                 ConstantContainer(
                   borderColor: AppColors.white50,
@@ -230,10 +228,11 @@ class _BuyPostState extends State<BuyPost> {
     );
   }
 
-  Widget ConsTextField(suffix, prefix,hinttext,maxline) {
+  Widget ConsTextField(suffix, prefix,hinttext,maxline,keytype) {
     return TextFormField(
       maxLines: maxline,
       cursorColor: AppColors.primary60,
+      keyboardType: keytype,
       decoration: InputDecoration(
         border: const OutlineInputBorder(),
         enabledBorder: const OutlineInputBorder(

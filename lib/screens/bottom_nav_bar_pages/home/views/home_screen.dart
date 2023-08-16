@@ -32,111 +32,112 @@ class _HomeScreenState extends State<HomeScreen>with TickerProviderStateMixin {
             backgroundColor: AppColors.white10,
               useSafeArea: true,
               context: context, builder: (context){
-            return NotificationListener<OverscrollIndicatorNotification>(
-              onNotification: (notification){
-                notification.disallowIndicator();
-                return true;
-              },
-              child: ListView(
-
-                children: [
-                  ListTile(
-                      title: Text("Choose a group".tr,style: AppTextStyles.kBody17SemiboldTextStyle.copyWith(color: AppColors.white100),),
-                      subtitle: Text( "Where do you want to publish your post".tr,style: AppTextStyles.kCaption12RegularTextStyle.copyWith(color: AppColors.white60),),
-                      trailing:Material(
-                        elevation: 5,
-                        shape: const CircleBorder(),
-                        clipBehavior: Clip.antiAlias,
-                        child: IconButton(onPressed: (){
-                          Navigator.pop(context);
-                        }, icon: const Icon(CupertinoIcons.multiply)),
-                      ) ,
-
-                  ),
-                  ListView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: count,
-                    itemBuilder: (context,index) {
-                      return index%2==0? Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ConstantContainer(
-                          borderColor: AppColors.white40,
-                          radiusBorder: 10,
-                          child: ListTile(
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                            onTap: (){
-                              Utils.goTo(context, const GeneralPost());
-                            },
-                            tileColor: AppColors.primary10,
-                            leading: const CircleAvatar(
-                              backgroundImage:
-                              NetworkImage("https://imgs.search.brave.com/YuURFlMn0gTr-E7cpdpEyBrycdj6Q0ZzgF2bKZoKDBY/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5zcHJvdXRzb2Np/YWwuY29tL3VwbG9h/ZHMvMjAyMi8wNi9w/cm9maWxlLXBpY3R1/cmUuanBlZw"),
-                            ),
-                            title: Text("message".tr,style: AppTextStyles.kBody17SemiboldTextStyle.copyWith(color: AppColors.white100),),
-                            subtitle: Row(
-                              children: [
-                                Padding(
-                                  padding:  const EdgeInsets.symmetric(horizontal: 10.0),
-                                  child: ConstantContainer(
-                                    height: 20,
-                                    width: 50,
-                                    color: AppColors.white,
-                                    radiusBorder: 10,
-                                    child: Center(child: Text("Social",style: AppTextStyles.kCaption12SemiboldTextStyle.copyWith(color: AppColors.white100),)),
+            return Column(
+              children: [
+                ListTile(
+                  tileColor: AppColors.white,
+                    title: Text("Choose a group".tr,style: AppTextStyles.kBody17SemiboldTextStyle.copyWith(color: AppColors.white100),),
+                    subtitle: Text( "Where do you want to publish your post".tr,style: AppTextStyles.kCaption12RegularTextStyle.copyWith(color: AppColors.white60),),
+                    trailing:Material(
+                      elevation: 5,
+                      shape: const CircleBorder(),
+                      clipBehavior: Clip.antiAlias,
+                      child: IconButton(onPressed: (){
+                        Navigator.pop(context);
+                      }, icon: const Icon(CupertinoIcons.multiply)),
+                    ),
+                ),
+                Expanded(
+                  child: NotificationListener<OverscrollIndicatorNotification>(
+                    onNotification: (notification){
+                      notification.disallowIndicator();
+                      return true;
+                    },
+                    child: ListView.builder(
+                      // shrinkWrap: true,
+                        physics:  AlwaysScrollableScrollPhysics(),
+                        itemCount: count,
+                      itemBuilder: (context,index) {
+                        return index%2==0? Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: ConstantContainer(
+                            borderColor: AppColors.white60,
+                            radiusBorder: 10,
+                            child: ListTile(
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                              onTap: (){
+                                Utils.goTo(context, const GeneralPost());
+                              },
+                              tileColor: AppColors.primary10,
+                              leading: const CircleAvatar(
+                                backgroundImage:
+                                NetworkImage("https://imgs.search.brave.com/YuURFlMn0gTr-E7cpdpEyBrycdj6Q0ZzgF2bKZoKDBY/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5zcHJvdXRzb2Np/YWwuY29tL3VwbG9h/ZHMvMjAyMi8wNi9w/cm9maWxlLXBpY3R1/cmUuanBlZw"),
+                              ),
+                              title: Text("message".tr,style: AppTextStyles.kBody17SemiboldTextStyle.copyWith(color: AppColors.white100),),
+                              subtitle: Row(
+                                children: [
+                                  Padding(
+                                    padding:  const EdgeInsets.symmetric(horizontal: 10.0),
+                                    child: ConstantContainer(
+                                      height: 20,
+                                      width: 50,
+                                      color: AppColors.white,
+                                      radiusBorder: 10,
+                                      child: Center(child: Text("Social",style: AppTextStyles.kCaption12SemiboldTextStyle.copyWith(color: AppColors.white100),)),
+                                    ),
                                   ),
-                                ),
-                                const Text("5 days ago",style: AppTextStyles.kSmall10RegularTextStyle,)
-                              ],
+                                  const Text("5 days ago",style: AppTextStyles.kSmall10RegularTextStyle,)
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                      ):Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ConstantContainer(
-                          borderColor: AppColors.white40,
-                          radiusBorder: 10,
-                          child: ListTile(
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                            onTap: (){
-                              showModalBottomSheet(
-                                backgroundColor: AppColors.white10,
-                                  useSafeArea: true,
-                                  context: context, builder: (context){
-                                return const ConstCreatePostWidget();
-                              });
-                            },
-                            tileColor: AppColors.white30,
-                            leading: const CircleAvatar(
-                              backgroundImage: NetworkImage("https://imgs.search.brave.com/PfcJM9Qx2yB5UksFZ0p9peQjMlaRTZbqCPA50ntWTiM/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvODYz/NDczNzk2L3Bob3Rv/L2EtOC1tb250aHMt/YmFieS1naXJsLXNt/aWxpbmcuanBnP3M9/NjEyeDYxMiZ3PTAm/az0yMCZjPW44NHhj/S0hKeE5Yc0lIdFcw/UHdJRTVyeFh3LTFM/RWdfUXp5VFVIcEFS/T3c9"),
-                            ),
-                            title: Text("message".tr,style: AppTextStyles.kBody17SemiboldTextStyle.copyWith(color: AppColors.white100),),
-                            subtitle: Row(
-                              children: [
-                                Padding(
-                                  padding:  const EdgeInsets.symmetric(horizontal: 10.0),
-                                  child: ConstantContainer(
-                                    height: 20,
-                                    // width: 50,
-                                    color: AppColors.white,
-                                    radiusBorder: 10,
-                                    child: Center(child: Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                                      child: Text("Buy-Sell".tr,style: AppTextStyles.kCaption12RegularTextStyle.copyWith(color: AppColors.info40),),
-                                    )),
+                        ):Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: ConstantContainer(
+                            borderColor: AppColors.white60,
+                            radiusBorder: 10,
+                            child: ListTile(
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                              onTap: (){
+                                showModalBottomSheet(
+                                  backgroundColor: AppColors.white10,
+                                    useSafeArea: true,
+                                    context: context, builder: (context){
+                                  return const ConstCreatePostWidget();
+                                });
+                              },
+                              tileColor: AppColors.white30,
+                              leading: const CircleAvatar(
+                                backgroundImage: NetworkImage("https://imgs.search.brave.com/PfcJM9Qx2yB5UksFZ0p9peQjMlaRTZbqCPA50ntWTiM/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvODYz/NDczNzk2L3Bob3Rv/L2EtOC1tb250aHMt/YmFieS1naXJsLXNt/aWxpbmcuanBnP3M9/NjEyeDYxMiZ3PTAm/az0yMCZjPW44NHhj/S0hKeE5Yc0lIdFcw/UHdJRTVyeFh3LTFM/RWdfUXp5VFVIcEFS/T3c9"),
+                              ),
+                              title: Text("message".tr,style: AppTextStyles.kBody17SemiboldTextStyle.copyWith(color: AppColors.white100),),
+                              subtitle: Row(
+                                children: [
+                                  Padding(
+                                    padding:  const EdgeInsets.symmetric(horizontal: 10.0),
+                                    child: ConstantContainer(
+                                      height: 20,
+                                      // width: 50,
+                                      color: AppColors.white,
+                                      radiusBorder: 10,
+                                      child: Center(child: Padding(
+                                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                        child: Text("Buy-Sell".tr,style: AppTextStyles.kCaption12RegularTextStyle.copyWith(color: AppColors.info40),),
+                                      )),
+                                    ),
                                   ),
-                                ),
-                                Text("193 Members",style: AppTextStyles.kCaption12RegularTextStyle.copyWith(color: AppColors.white100),),
+                                  Text("193 Members",style: AppTextStyles.kCaption12RegularTextStyle.copyWith(color: AppColors.white100),),
 
-                              ],
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                      );
-                    }
+                        );
+                      }
+                    ),
                   ),
-                ],
-              ),
+                ),
+              ],
             );
           });
         },
@@ -193,7 +194,6 @@ class YourGroup extends StatelessWidget {
         shrinkWrap: true,
         physics: const ScrollPhysics(),
         itemCount: count,
-
           itemBuilder: (context,index){
         return index<count-1? Padding(
           padding: const EdgeInsets.all(8.0),
@@ -259,37 +259,34 @@ class YourGroup extends StatelessWidget {
         ):Padding(
           padding: const EdgeInsets.all(8.0),
           child: ConstantContainer(
-            radiusBorder: 10,
-            borderColor: AppColors.white40,
+            height: size.height*.2,
+            width: size.width/2,
             color: AppColors.white,
-            child: Column(children: [  SizedBox(height: size.height*.05,),
-              ConstantContainer(
-                height: size.height*.13,
-                width: size.width*.8,
-                color: AppColors.white20,
-                radiusBorder: 20,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Column(
-                          children: [
-                            Text("Invite buyers or seller on Agrishot and get engaged",style: AppTextStyles.kBody15RegularTextStyle.copyWith(color: AppColors.white100),),
-                            const SizedBox(height: 10,),
-                            ElevatedButton(
-                                style: ElevatedButton.styleFrom(backgroundColor: AppColors.primary60),
-                                onPressed: (){
-                                  Utils.shareContent();
-                                }, child: const Text("Share App"))
-                          ],
-                        ),
-                      ),
-                      Image.network("https://imgs.search.brave.com/pUYH2yBeXifmr33_g6iiQcJhJo_Q6oPbLepP7Vw5V6g/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9jbGlw/YXJ0LmluZm8vaW1h/Z2VzL21pbmljb3Zl/cnMvMTUwNTkxODY0/OWlwaG9uZS14LTEw/LXdpdGgtaGFuZC1w/bmcucG5n")
-                    ],
+            borderColor: AppColors.white60,
+            radiusBorder: 20,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Invite buyers or seller on Kheti Khata and get engaged",style: AppTextStyles.kBody15RegularTextStyle.copyWith(color: AppColors.white100),),
+                        const SizedBox(height: 10,),
+                        ElevatedButton(
+                            style: ElevatedButton.styleFrom(backgroundColor: AppColors.primary60,shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
+                            onPressed: (){
+                              Utils.shareContent();
+                            }, child: const Text("Share App"))
+                      ],
+                    ),
                   ),
-                ),
-              ), SizedBox(height: size.height*.05,)],),
+                  Expanded(child: Image.network("https://imgs.search.brave.com/pUYH2yBeXifmr33_g6iiQcJhJo_Q6oPbLepP7Vw5V6g/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9jbGlw/YXJ0LmluZm8vaW1h/Z2VzL21pbmljb3Zl/cnMvMTUwNTkxODY0/OWlwaG9uZS14LTEw/LXdpdGgtaGFuZC1w/bmcucG5n"))
+                ],
+              ),
+            ),
           ),
         );
       }),
@@ -363,7 +360,7 @@ class NewsFeed extends StatelessWidget {
                     text: TextSpan(
                       children: <TextSpan>[
                         TextSpan(
-                          text: 'Agrishots ',
+                          text: 'Kheti Khatas ',
                           style: AppTextStyles.kCaption12RegularTextStyle.copyWith(color: AppColors.white80,decoration: TextDecoration.underline,decorationColor: AppColors.primary60),
                         ),
                         TextSpan(

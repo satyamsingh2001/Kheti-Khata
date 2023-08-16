@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:khetikhata/screens/bottom_nav_bar_pages/home/views/home_screen.dart';
 import 'package:khetikhata/screens/bottom_nav_bar_pages/notifications/notification_screen.dart';
-import 'package:khetikhata/screens/setting.dart';
+import 'package:khetikhata/screens/setting/setting.dart';
 import 'package:khetikhata/utils/Utils.dart';
 import '../colors/colors_const.dart';
 import 'bottom_nav_bar_pages/community/explore_groups.dart';
@@ -50,7 +50,7 @@ class _Bottom_PageState extends State<Bottom_Page> {
         enableFeedback: true,
         items:  [
           BottomNavigationBarItem(
-            icon: const Icon(Icons.home_filled),
+            icon: const Icon(Icons.home_outlined),
             label: 'Home'.tr,
           ),
           BottomNavigationBarItem(
