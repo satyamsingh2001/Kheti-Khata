@@ -1,4 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:khetikhata/colors/colors_const.dart';
@@ -6,12 +8,39 @@ import 'package:khetikhata/screens/bottom_nav_bar.dart';
 import '../../styles/textstyle_const.dart';
 import 'otp_verfication.dart';
 
-class LoginScreen extends StatelessWidget {
-  final TextEditingController _phoneNumberController = TextEditingController();
-  late String? phoneNumber;
+class LoginScreen extends StatefulWidget {
   static String verify = "";
 
+  const LoginScreen({super.key});
+
   @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController _phoneNumberController = TextEditingController();
+
+  late String? phoneNumber;
+  String ntoken = " ";
+
+
+  @override
+  void initState() {
+    super.initState();
+    getToken();
+  }
+  void getToken() async{
+    await FirebaseMessaging.instance.getToken().then((token){
+      setState(() {
+        ntoken=token!;
+        if (kDebugMode) {
+          print("my token is $ntoken");
+        }
+      });
+
+    } );
+  }
+
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(

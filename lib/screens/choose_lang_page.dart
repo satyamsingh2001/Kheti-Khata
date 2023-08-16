@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:khetikhata/colors/colors_const.dart';
 import 'package:khetikhata/const/constContainer.dart';
-import 'package:khetikhata/const/const_dropdown.dart';
 import 'package:khetikhata/screens/auth/login_screen.dart';
 import 'package:khetikhata/styles/textstyle_const.dart';
 import 'package:khetikhata/utils/Utils.dart';
@@ -18,9 +17,7 @@ class _ChooseLangState extends State<ChooseLang> {
   int value =0;
   @override
   Widget build(BuildContext context) {
-    final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
     Size size = MediaQuery.of(context).size;
-    String selectedValue = 'English';
     return Scaffold(
       body: Center(
         child: Column(
@@ -28,15 +25,15 @@ class _ChooseLangState extends State<ChooseLang> {
             SizedBox(height: size.height*.4,),
             const Text("Select Your Preferred Language",style: AppTextStyles.kBody15SemiboldTextStyle,),
             SizedBox(height: size.height*.01,),
-            CustomRadioButton("English",1,context),
-            CustomRadioButton("हिंदी",2,context),
-            SizedBox(height: 26),
+            customRadioButton("English",1,context),
+            customRadioButton("हिंदी",2,context),
+            const SizedBox(height: 26),
             GestureDetector(
               onTap: () {
                 if (value != 0) { // Check if a language is selected
-                  var locale = value == 1 ? Locale('en', '') : Locale('hi', '');
+                  var locale = value == 1 ? const Locale('en', '') : const Locale('hi', '');
                   Get.updateLocale(locale);
-                  Utils.replacement(context, LoginScreen());
+                  Utils.replacement(context, const LoginScreen());
                 }
               },
               child: ConstantContainer(
@@ -57,7 +54,7 @@ class _ChooseLangState extends State<ChooseLang> {
     );
   }
 
-  Widget CustomRadioButton(String text, int index,BuildContext context) {
+  Widget customRadioButton(String text, int index,BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: InkWell(

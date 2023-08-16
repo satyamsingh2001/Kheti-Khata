@@ -136,7 +136,7 @@ class _BuySellState extends State<BuySell> with TickerProviderStateMixin{
             Expanded(
               // height: size.height,
               child: TabBarView(
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 controller: tabController,
                 children: const [
                   SellersPost(),
@@ -191,7 +191,7 @@ class BuyersPost extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        Icon(CupertinoIcons.location_solid,color: AppColors.primary60,),
+                        const Icon(CupertinoIcons.location_solid,color: AppColors.primary60,),
                          Text("Sector 62 Noida, ",style: AppTextStyles.kBody15SemiboldTextStyle.copyWith(color: AppColors.primary60),),
                         const Text("36 day ago",style: AppTextStyles.kCaption12RegularTextStyle,),
                         const Spacer(),
@@ -209,15 +209,15 @@ class BuyersPost extends StatelessWidget {
                     const Divider(color: AppColors.white40,thickness: 1,),
                     Text("Payment Condition".tr,style: AppTextStyles.kBody15SemiboldTextStyle.copyWith(color: AppColors.warning100),),
                     const SizedBox(height: 10,),
-                    const ConstantContainer(
+                     ConstantContainer(
                       width: 70,
-                      borderColor: AppColors.primary60,
+                      color: AppColors.primary60,
                       borderWidth: 1.5,
-                      radiusBorder: 10,
+                      radiusBorder: 20,
                       child: Center(
                         child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 8.0,vertical: 8),
-                          child: Text("Cash",style: AppTextStyles.kBody15SemiboldTextStyle,),
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0,vertical: 8),
+                          child: Text("Cash",style: AppTextStyles.kBody15SemiboldTextStyle.copyWith(color: AppColors.white),),
                         ),
                       ),
                     ),
@@ -234,7 +234,7 @@ class BuyersPost extends StatelessWidget {
                             padding: const EdgeInsets.only(right: 8.0),
                             child: InkWell(
                                 onTap: (){
-                                  Utils.openWhatsApp("1234567890", "Hello");
+                                  Utils.openWhatsApp("6393604028", "Hello");
                                 },
                                 child: Image.asset(whatsapp,height: 30,width: 30,)),
                           ),
@@ -309,7 +309,7 @@ class SellersPost extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        Icon(CupertinoIcons.location_solid,color: AppColors.primary60,),
+                        const Icon(CupertinoIcons.location_solid,color: AppColors.primary60,),
                          Text("Sector 62 Noida, ",style: AppTextStyles.kBody15SemiboldTextStyle.copyWith(color: AppColors.primary60),),
                         const Text("36 day ago",style: AppTextStyles.kCaption12RegularTextStyle,),
                         const Spacer(),
@@ -329,15 +329,15 @@ class SellersPost extends StatelessWidget {
                         child: ConstPageview(pageCount: 5,)),
                     Text("Payment Condition".tr,style: AppTextStyles.kBody15SemiboldTextStyle.copyWith(color: AppColors.warning100),),
                     const SizedBox(height: 10,),
-                    const ConstantContainer(
+                     ConstantContainer(
                       width: 70,
-                      borderColor: AppColors.primary60,
+                      color: AppColors.primary60,
                       borderWidth: 1.5,
-                      radiusBorder: 10,
+                      radiusBorder: 20,
                       child: Center(
                         child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 8.0,vertical: 8),
-                          child: Text("Cash",style: AppTextStyles.kBody15SemiboldTextStyle,),
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0,vertical: 8),
+                          child: Text("Cash",style: AppTextStyles.kBody15SemiboldTextStyle.copyWith(color: AppColors.white),),
                         ),
                       ),
                     ),
@@ -354,7 +354,7 @@ class SellersPost extends StatelessWidget {
                             padding: const EdgeInsets.only(right: 8.0),
                             child: InkWell(
                                 onTap: (){
-                                  Utils.openWhatsApp("1234567890", "Hello");
+                                  Utils.openWhatsApp("+916393604028", "Hello");
                                 },
                                 child: Image.asset(whatsapp,height: 30,width: 30,)),
                           ),
@@ -397,9 +397,12 @@ class All extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List name = [
-      BuyersPost(),
-      SellersPost(),
-      ConstPost(),
+      const Padding(
+        padding: EdgeInsets.all(8.0),
+        child: ConstPost(),
+      ),
+      const SellersPost(),
+      const BuyersPost(),
     ];
     return  NotificationListener<OverscrollIndicatorNotification>(
       onNotification: (notification){
@@ -407,9 +410,9 @@ class All extends StatelessWidget {
         return true;
       },
       child: ListView.builder(
-          // itemCount: 7,
-          shrinkWrap: true,
-          physics: AlwaysScrollableScrollPhysics(),
+          itemCount: 7,
+          // shrinkWrap: true,
+          // physics: AlwaysScrollableScrollPhysics(),
           itemBuilder: (context, index) {
             return name[index];
           }),

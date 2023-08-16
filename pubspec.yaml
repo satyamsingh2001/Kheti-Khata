@@ -33,14 +33,17 @@ dependencies:
   fluttertoast: ^8.2.1
   firebase_core: ^2.14.0
   firebase_auth: ^4.6.3
-  pinput:
-  get:
-  flutter_localization:
-  intl:
+  pinput: ^2.2.31
+  get: ^4.6.5
+  intl: ^0.18.0
   esys_flutter_share_plus: ^2.2.0
   image_picker: ^0.8.9
   flutter_phone_direct_caller: ^2.1.1
   url_launcher: ^6.0.6
+  firebase_messaging: ^14.6.5
+  flutter_local_notifications: ^15.1.0+1
+  shared_preferences:
+
 
 
 

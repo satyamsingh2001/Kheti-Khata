@@ -38,15 +38,18 @@ class Utils{
     await FlutterPhoneDirectCaller.callNumber(number);
   }
 
-  static void openWhatsApp(String phoneNumber,message) async {
+  static void openWhatsApp(String phoneNumber, message) async {
     final url = 'https://wa.me/$phoneNumber?text=${Uri.encodeComponent(message)}';
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
+    try {
+      if (await canLaunch(url)) {
+        await launch(url);
+      } else {
+        throw 'Could not launch $url';
+      }
+    } catch (e) {
+      print('Error launching URL: $e');
     }
   }
-
 
   static void shareContent()  {
     try {

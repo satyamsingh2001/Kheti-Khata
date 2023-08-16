@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:khetikhata/colors/colors_const.dart';
 import 'package:khetikhata/const/constContainer.dart';
 import 'package:khetikhata/const/const_dropdown.dart';
-import 'package:khetikhata/screens/bottom_nav_bar.dart';
 import 'package:khetikhata/styles/textstyle_const.dart';
-import '../../../../../utils/Utils.dart';
-import '../../widgets/addphoto_widgets.dart';
 
 class BuyPost extends StatefulWidget {
   const BuyPost({Key? key}) : super(key: key);
@@ -126,6 +123,7 @@ class _BuyPostState extends State<BuyPost> {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: ConstantDropdown(
+                      hint: "Select Commodityss",
                       options: const ["Select Commodity", "Onion", "Nasik Onion", "Rajasthan Onion", "MP Onion"],
                       selectedOption: isSelect,
                       onChanged: (value) {

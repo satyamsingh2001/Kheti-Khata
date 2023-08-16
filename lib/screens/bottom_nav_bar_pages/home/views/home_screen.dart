@@ -194,7 +194,6 @@ class YourGroup extends StatelessWidget {
         shrinkWrap: true,
         physics: const ScrollPhysics(),
         itemCount: count,
-
           itemBuilder: (context,index){
         return index<count-1? Padding(
           padding: const EdgeInsets.all(8.0),
@@ -260,27 +259,31 @@ class YourGroup extends StatelessWidget {
         ):Padding(
           padding: const EdgeInsets.all(8.0),
           child: ConstantContainer(
-            height: size.height*.13,
-            width: size.width*.8,
-            color: AppColors.white20,
+            height: size.height*.2,
+            width: size.width/2,
+            color: AppColors.white,
             borderColor: AppColors.white60,
             radiusBorder: 20,
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Column(
-                    children: [
-                      Text("Invite buyers or seller on Kheti Khata and get engaged",style: AppTextStyles.kBody15RegularTextStyle.copyWith(color: AppColors.white100),),
-                      const SizedBox(height: 10,),
-                      ElevatedButton(
-                          style: ElevatedButton.styleFrom(backgroundColor: AppColors.primary60,shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
-                          onPressed: (){
-                            Utils.shareContent();
-                          }, child: const Text("Share App"))
-                    ],
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Invite buyers or seller on Kheti Khata and get engaged",style: AppTextStyles.kBody15RegularTextStyle.copyWith(color: AppColors.white100),),
+                        const SizedBox(height: 10,),
+                        ElevatedButton(
+                            style: ElevatedButton.styleFrom(backgroundColor: AppColors.primary60,shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
+                            onPressed: (){
+                              Utils.shareContent();
+                            }, child: const Text("Share App"))
+                      ],
+                    ),
                   ),
-                  Image.network("https://imgs.search.brave.com/pUYH2yBeXifmr33_g6iiQcJhJo_Q6oPbLepP7Vw5V6g/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9jbGlw/YXJ0LmluZm8vaW1h/Z2VzL21pbmljb3Zl/cnMvMTUwNTkxODY0/OWlwaG9uZS14LTEw/LXdpdGgtaGFuZC1w/bmcucG5n")
+                  Expanded(child: Image.network("https://imgs.search.brave.com/pUYH2yBeXifmr33_g6iiQcJhJo_Q6oPbLepP7Vw5V6g/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9jbGlw/YXJ0LmluZm8vaW1h/Z2VzL21pbmljb3Zl/cnMvMTUwNTkxODY0/OWlwaG9uZS14LTEw/LXdpdGgtaGFuZC1w/bmcucG5n"))
                 ],
               ),
             ),
