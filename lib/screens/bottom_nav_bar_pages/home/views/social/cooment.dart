@@ -174,7 +174,7 @@ class CommentPage extends StatelessWidget {
                             )
                           ],
                         ),
-                        subtitle: Text("Farmer",style: AppTextStyles.kSmall10RegularTextStyle.copyWith(color: AppColors.white70)),
+                        subtitle: Text("Farmer".tr,style: AppTextStyles.kSmall10RegularTextStyle.copyWith(color: AppColors.white70)),
                       ),
                       SizedBox(
                         height: size.height * .01,

@@ -25,6 +25,8 @@ class _ChooseLangState extends State<ChooseLang> {
             SizedBox(height: size.height*.4,),
             const Text("Select Your Preferred Language",style: AppTextStyles.kBody15SemiboldTextStyle,),
             SizedBox(height: size.height*.01,),
+            const Text("अपनी पसंदीदा भाषा चुनें",style: AppTextStyles.kBody15SemiboldTextStyle,),
+            SizedBox(height: size.height*.01,),
             customRadioButton("English",1,context),
             customRadioButton("हिंदी",2,context),
             const SizedBox(height: 26),
@@ -42,7 +44,7 @@ class _ChooseLangState extends State<ChooseLang> {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 10),
                   child: Text(
-                    'Next',
+                    'next'.tr,
                     style: AppTextStyles.kBody15RegularTextStyle.copyWith(color: AppColors.white),
                   ),
                 ),
@@ -67,13 +69,30 @@ class _ChooseLangState extends State<ChooseLang> {
           height: MediaQuery.of(context).size.height*.05,
           width: MediaQuery.of(context).size.width/1.5,
           radiusBorder: 20,
-          color: (value == index) ? AppColors.primary60 : AppColors.white ,
-          borderColor: AppColors.white50,
+          borderColor: (value == index) ? AppColors.primary60 : AppColors.white100 ,
+          borderWidth:(value == index) ? 1.5:1,
           child: Center(
-            child: Text(
-              text,
-              style: TextStyle(
-                color: (value== index) ? AppColors.white : AppColors.white100,fontWeight: FontWeight.bold
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    text,
+                    style: const TextStyle(
+                      color: AppColors.white100,fontWeight: FontWeight.bold
+                    ),
+                  ),
+                  (value == index)  ? const Icon(
+            Icons.check_circle_outlined,
+            color: AppColors.white100,
+            )
+                : const Icon(
+            Icons.circle_outlined,
+            color: AppColors.primary60,
+          ),
+
+                ],
               ),
             ),
           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:khetikhata/colors/colors_const.dart';
 import 'package:khetikhata/const/constContainer.dart';
 import 'package:khetikhata/utils/Utils.dart';
@@ -39,7 +40,7 @@ class _NamePageState extends State<NamePage> {
           child: Column(
             children: [
               SizedBox(height: size.height/4,),
-              Text("What should we call you?",style: AppTextStyles.kBody20SemiboldTextStyle.copyWith(color: AppColors.white100),),
+              Text("What should we call you?".tr,style: AppTextStyles.kBody20SemiboldTextStyle.copyWith(color: AppColors.white100),),
               const SizedBox(height: 25,),
                SizedBox(
             height: size.height*0.05,
@@ -49,7 +50,7 @@ class _NamePageState extends State<NamePage> {
               cursorColor: AppColors.primary60,
               decoration: InputDecoration(
                 contentPadding: const EdgeInsets.symmetric(horizontal: 8),
-                hintText: "Enter Full Name",
+                hintText: "Enter Full Name".tr,
                 border: const OutlineInputBorder(),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
@@ -70,7 +71,7 @@ class _NamePageState extends State<NamePage> {
                   radiusBorder: 20,
                   borderColor: AppColors.white100,
                   color: _isButtonClickable?AppColors.primary60:AppColors.white50,
-                  child: Center(child: Text("Next",style: AppTextStyles.kBody15SemiboldTextStyle.copyWith(color: AppColors.white),)),
+                  child: Center(child: Text("next".tr,style: AppTextStyles.kBody15SemiboldTextStyle.copyWith(color: AppColors.white),)),
                 ),
               )
 

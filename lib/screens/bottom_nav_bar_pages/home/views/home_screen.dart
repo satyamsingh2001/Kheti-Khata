@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:khetikhata/const/constString.dart';
 import 'package:khetikhata/screens/bottom_nav_bar_pages/home/views/buy-sell/buy-sell.dart';
 import 'package:khetikhata/screens/bottom_nav_bar_pages/home/widgets/general_post.dart';
 import 'package:khetikhata/screens/bottom_nav_bar_pages/home/views/social/social.dart';
@@ -21,7 +22,6 @@ class _HomeScreenState extends State<HomeScreen>with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context)  {
     int count =10;
-    Size size = MediaQuery.of(context).size;
     TabController tabController = TabController(length: 2, vsync: this);
     return Scaffold(
       backgroundColor: AppColors.white10,
@@ -34,18 +34,22 @@ class _HomeScreenState extends State<HomeScreen>with TickerProviderStateMixin {
               context: context, builder: (context){
             return Column(
               children: [
-                ListTile(
-                  tileColor: AppColors.white,
-                    title: Text("Choose a group".tr,style: AppTextStyles.kBody17SemiboldTextStyle.copyWith(color: AppColors.white100),),
-                    subtitle: Text( "Where do you want to publish your post".tr,style: AppTextStyles.kCaption12RegularTextStyle.copyWith(color: AppColors.white60),),
-                    trailing:Material(
-                      elevation: 5,
-                      shape: const CircleBorder(),
-                      clipBehavior: Clip.antiAlias,
-                      child: IconButton(onPressed: (){
-                        Navigator.pop(context);
-                      }, icon: const Icon(CupertinoIcons.multiply)),
-                    ),
+                Card(
+                  elevation: 0,
+                  color: AppColors.white10,
+                  child: ListTile(
+                    tileColor: AppColors.white,
+                      title: Text("Choose a group".tr,style: AppTextStyles.kBody17SemiboldTextStyle.copyWith(color: AppColors.white100),),
+                      subtitle: Text( "Where do you want to publish your post".tr,style: AppTextStyles.kCaption12RegularTextStyle.copyWith(color: AppColors.white60),),
+                      trailing:Material(
+                        elevation: 5,
+                        shape: const CircleBorder(),
+                        clipBehavior: Clip.antiAlias,
+                        child: IconButton(onPressed: (){
+                          Navigator.pop(context);
+                        }, icon: const Icon(CupertinoIcons.multiply)),
+                      ),
+                  ),
                 ),
                 Expanded(
                   child: NotificationListener<OverscrollIndicatorNotification>(
@@ -54,8 +58,7 @@ class _HomeScreenState extends State<HomeScreen>with TickerProviderStateMixin {
                       return true;
                     },
                     child: ListView.builder(
-                      // shrinkWrap: true,
-                        physics:  AlwaysScrollableScrollPhysics(),
+                        physics:  const AlwaysScrollableScrollPhysics(),
                         itemCount: count,
                       itemBuilder: (context,index) {
                         return index%2==0? Padding(
@@ -83,7 +86,7 @@ class _HomeScreenState extends State<HomeScreen>with TickerProviderStateMixin {
                                       width: 50,
                                       color: AppColors.white,
                                       radiusBorder: 10,
-                                      child: Center(child: Text("Social",style: AppTextStyles.kCaption12SemiboldTextStyle.copyWith(color: AppColors.white100),)),
+                                      child: Center(child: Text("Social".tr,style: AppTextStyles.kCaption12SemiboldTextStyle.copyWith(color: AppColors.white100),)),
                                     ),
                                   ),
                                   const Text("5 days ago",style: AppTextStyles.kSmall10RegularTextStyle,)
@@ -145,22 +148,25 @@ class _HomeScreenState extends State<HomeScreen>with TickerProviderStateMixin {
       ),
       body: Column(
         children: [
-          TabBar(
-            indicatorSize: TabBarIndicatorSize.tab,
-            isScrollable: false,
-            indicatorColor: AppColors.primary60,
-            labelColor: AppColors.primary60,
-            unselectedLabelColor: AppColors.white100,
-            unselectedLabelStyle: AppTextStyles.kBody15SemiboldTextStyle,
-            controller: tabController,
-            tabs:  [
-              Tab(
-                text: "Your Groups".tr,
-              ),
-              Tab(
-               text: "News Feed".tr,
-              ),
-            ],
+          Card(
+            elevation: 0,
+            child: TabBar(
+              indicatorSize: TabBarIndicatorSize.tab,
+              isScrollable: false,
+              indicatorColor: AppColors.primary60,
+              labelColor: AppColors.primary60,
+              unselectedLabelColor: AppColors.white100,
+              unselectedLabelStyle: AppTextStyles.kBody15SemiboldTextStyle,
+              controller: tabController,
+              tabs:  [
+                Tab(
+                  text: "Your Groups".tr,
+                ),
+                Tab(
+                 text: "News Feed".tr,
+                ),
+              ],
+            ),
           ),
           Expanded(
             child: TabBarView(
@@ -226,7 +232,7 @@ class YourGroup extends StatelessWidget {
                       const Text("5 days ago",style: AppTextStyles.kSmall10RegularTextStyle,)
                     ],
                   ),
-                  subtitle: Text("Agriculture",style: AppTextStyles.kCaption12RegularTextStyle.copyWith(color: AppColors.white100),),
+                  subtitle: Text("agriculture".tr,style: AppTextStyles.kCaption12RegularTextStyle.copyWith(color: AppColors.white100),),
                 ):ListTile(
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                   onTap: (){
@@ -251,7 +257,7 @@ class YourGroup extends StatelessWidget {
 
                     ],
                   ),
-                  subtitle: Text("Agriculture",style: AppTextStyles.kCaption12RegularTextStyle.copyWith(color: AppColors.white100),),
+                  subtitle: Text("agriculture".tr,style: AppTextStyles.kCaption12RegularTextStyle.copyWith(color: AppColors.white100),),
                 ),
               ],
             ),
@@ -273,13 +279,13 @@ class YourGroup extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("Invite buyers or seller on Kheti Khata and get engaged",style: AppTextStyles.kBody15RegularTextStyle.copyWith(color: AppColors.white100),),
+                        Text("Invite buyers or seller on Kheti Khata and get engaged".tr,style: AppTextStyles.kBody15RegularTextStyle.copyWith(color: AppColors.white100),),
                         const SizedBox(height: 10,),
                         ElevatedButton(
                             style: ElevatedButton.styleFrom(backgroundColor: AppColors.primary60,shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
                             onPressed: (){
                               Utils.shareContent();
-                            }, child: const Text("Share App"))
+                            }, child:  Text("Share App".tr))
                       ],
                     ),
                   ),
@@ -348,14 +354,14 @@ class NewsFeed extends StatelessWidget {
                           clipBehavior: Clip.antiAlias,
                           child: IconButton(onPressed: (){
                             Utils.shareContent();
-                          }, icon: const Icon(CupertinoIcons.cart)),
+                          }, icon:Image.asset(unSave)),
                         ),
 
                       ],
                     ),
                   ),
                   Text("Global heating likely to hit world food supply before 1.5C, says UN expert",style: AppTextStyles.kBody17SemiboldTextStyle.copyWith(color: AppColors.white100),),
-                 SizedBox(height: 5,),
+                 const SizedBox(height: 5,),
                   RichText(
                     text: TextSpan(
                       children: <TextSpan>[
@@ -370,14 +376,14 @@ class NewsFeed extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(height: 5,),
+                  const SizedBox(height: 5,),
                   Text("Global heating, driven primarily by the accumulation of greenhouse gases in the atmosphere, is one of the most pressing challenges of our time. This phenomenon, commonly referred to as climate change, has far-reaching consequences, and one of the most critical areas it affects is the global food supply. As temperatures rise, extreme weather events become more frequent, and ecosystems shift, the stability of our agricultural systems is at risk. In this blog post, we'll explore how global heating is likely to impact the world food supply, the challenges it poses, and potential strategies to mitigate these effects.Global heating leads to more frequent and intense weather events such as heatwaves, droughts, and heavy rainfall. These unpredictable weather patterns can disrupt agricultural activities, impacting crop yields and leading to food shortages. Droughts, in particular, can have devastating effects on agriculture, especially in regions heavily dependent on rain-fed farming."
                   ,style: AppTextStyles.kCaption12RegularTextStyle.copyWith(color: AppColors.white50),
                   ),
-                  SizedBox(height: 5,),
+                  const SizedBox(height: 5,),
                   Align(
                       alignment: AlignmentDirectional.centerEnd,
-                      child: TextButton(onPressed: (){}, child: Text("Read More ",style: TextStyle(color: AppColors.primary60),)))
+                      child: TextButton(onPressed: (){}, child: const Text("Read More ",style: TextStyle(color: AppColors.primary60),)))
                 ],
               ),
             ),

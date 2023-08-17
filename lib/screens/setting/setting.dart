@@ -1,37 +1,48 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:khetikhata/colors/colors_const.dart';
 import 'package:khetikhata/const/constContainer.dart';
 import 'package:khetikhata/screens/auth/login_screen.dart';
-import 'package:khetikhata/screens/setting/pages/change_lang.dart';
 import 'package:khetikhata/screens/setting/pages/privacy.dart';
 import 'package:khetikhata/screens/setting/pages/saved_news.dart';
 import 'package:khetikhata/styles/textstyle_const.dart';
 import 'package:khetikhata/utils/Utils.dart';
 
-class Setting extends StatelessWidget {
+class Setting extends StatefulWidget {
   const Setting({Key? key}) : super(key: key);
 
   @override
+  State<Setting> createState() => _SettingState();
+}
+
+class _SettingState extends State<Setting> {
+  @override
   Widget build(BuildContext context) {
-    List names = [
+    int selectedLanguage = 0; // Default selected language
+    void onLanguageSelected(int? languageIndex) {
+      setState(() {
+        selectedLanguage = languageIndex ?? 0;
+      });
+    }
+
+    List<String> names = [
       "Saved News",
-      "Language",
       "Privacy",
+      "Language",
       "Logout",
       "Delete Your Account",
       "App Version",
     ];
     List pages = [
-      SavedNews(),
-      ChangeLang(),
-      Privacy(),
+      const SavedNews(),
+      const Privacy(),
     ];
 
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.primary60,
         centerTitle: true,
-        title: const Text("Setting"),
+        title: Text("Setting".tr),
       ),
       body: Column(
         children: [
@@ -48,15 +59,16 @@ class Setting extends StatelessWidget {
                 return ListTile(
                     onTap: () {
                       if (index == 3 || index == 4) {
-                        Utils.DialogBoxConfirm(
+                        Utils.dialogBoxConfirm(
                             context,
                             "",
                             index == 3
-                                ? "Are you sure want to logout?"
-                                : "Are you sure to Permanently Delete Your Account?",
+                                ? "Are you sure want to logout?".tr
+                                : "Are you sure to Permanently Delete Your Account?"
+                                    .tr,
                             GestureDetector(
                               onTap: () {
-                                Utils.nevergoTo(context, LoginScreen());
+                                Utils.nevergoTo(context, const LoginScreen());
                               },
                               child: ConstantContainer(
                                 height: 30,
@@ -65,7 +77,7 @@ class Setting extends StatelessWidget {
                                 radiusBorder: 20,
                                 child: Center(
                                   child: Text(
-                                    index == 3 ? "Logout" : "Delete",
+                                    index == 3 ? "Logout".tr : "Delete".tr,
                                     style: AppTextStyles
                                         .kBody15SemiboldTextStyle
                                         .copyWith(color: AppColors.white),
@@ -73,13 +85,46 @@ class Setting extends StatelessWidget {
                                 ),
                               ),
                             ));
-                      } else if (index <= 2) {
+                      } else if (index == 2) {
+                        Utils.constDialogBox(
+                            context,
+                            "Do you want to change your language?".tr,
+                            Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                RadioListTile(
+                                    activeColor: AppColors.primary60,
+                                    title: const Text("English"),
+                                    value: 0,
+                                    groupValue: selectedLanguage,
+                                    onChanged: onLanguageSelected),
+                                RadioListTile(
+                                  activeColor: AppColors.primary60,
+                                  title: const Text('हिंदी'),
+                                  value: 1,
+                                  groupValue: selectedLanguage,
+                                  onChanged: onLanguageSelected,
+                                ),
+                              ],
+                            ),
+                            ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    backgroundColor: AppColors.primary60),
+                                onPressed: () {
+                                  var locale = selectedLanguage == 0
+                                      ? const Locale('en', '')
+                                      : const Locale('hi', '');
+                                  Get.updateLocale(locale);
+                                  Navigator.pop(context);
+                                },
+                                child: Text("Ok".tr)));
+                      } else if (index <=1) {
                         Utils.goTo(context, pages[index]);
                       }
                     },
-                    leading: Text(names[index]),
+                    leading: Text(names[index].tr),
                     trailing: index < names.length - 1
-                        ? Icon(Icons.arrow_forward_ios)
+                        ? const Icon(Icons.arrow_forward_ios)
                         : Text(
                             "1.0.8",
                             style: AppTextStyles.kBody15RegularTextStyle
@@ -92,13 +137,13 @@ class Setting extends StatelessWidget {
   }
 
   logout(BuildContext context, text) {
-    return Utils.DialogBoxConfirm(
+    return Utils.dialogBoxConfirm(
         context,
         "",
         text,
         InkWell(
           onTap: () {
-            Utils.nevergoTo(context, LoginScreen());
+            Utils.nevergoTo(context, const LoginScreen());
           },
           child: ConstantContainer(
             color: AppColors.primary60,
@@ -108,7 +153,7 @@ class Setting extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                 child: Text(
-                  "Logout",
+                  "Logout".tr,
                   style: AppTextStyles.kBody15RegularTextStyle
                       .copyWith(color: AppColors.white),
                 ),
@@ -119,13 +164,13 @@ class Setting extends StatelessWidget {
   }
 
   deleteAccount(BuildContext context) {
-    return Utils.DialogBoxConfirm(
+    return Utils.dialogBoxConfirm(
         context,
         "",
         "Are you sure to Permanently Delete Your Account?",
         InkWell(
           onTap: () {
-            Utils.nevergoTo(context, LoginScreen());
+            Utils.nevergoTo(context, const LoginScreen());
           },
           child: ConstantContainer(
             color: AppColors.primary60,
@@ -135,7 +180,7 @@ class Setting extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(vertical: 8.0, horizontal: 15),
                 child: Text(
-                  "Logout",
+                  "Logout".tr,
                   style: AppTextStyles.kBody15RegularTextStyle
                       .copyWith(color: AppColors.white),
                 ),

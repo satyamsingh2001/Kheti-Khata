@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:khetikhata/const/constContainer.dart';
 import 'package:khetikhata/screens/bottom_nav_bar.dart';
 import 'package:khetikhata/utils/Utils.dart';
@@ -17,9 +21,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen>with TickerProviderStateMixin {
-
-  TextEditingController _controller = TextEditingController();
-  TextEditingController locationController = TextEditingController();
+  
   @override
   Widget build(BuildContext context) {
   TabController tabController = TabController(length: 2, vsync: this);
@@ -30,7 +32,7 @@ class _ProfileScreenState extends State<ProfileScreen>with TickerProviderStateMi
           children: [
             Row(
               children: [
-                 Column(
+                 const Column(
                   children: [
                     Padding(
                       padding: EdgeInsets.all(8.0),
@@ -59,12 +61,14 @@ class _ProfileScreenState extends State<ProfileScreen>with TickerProviderStateMi
                     ),
                   ],
                 ),
-                Spacer(),
+                const Spacer(),
                 TextButton(onPressed: (){
-                  showBottomSheet(context: context, builder: (context){
+                  showBottomSheet(
+                      backgroundColor: AppColors.white,
+                      context: context, builder: (context){
                     return ConstantContainer(
                         height: MediaQuery.of(context).size.height/2,
-                        child: EditProfile());
+                        child: const EditProfile());
                   });
                 }, child: Text("Edit",style: AppTextStyles.kBody15RegularTextStyle.copyWith(color: AppColors.primary60,decoration: TextDecoration.underline),)),
               ],
@@ -72,24 +76,24 @@ class _ProfileScreenState extends State<ProfileScreen>with TickerProviderStateMi
             const Divider(color: AppColors.white60,),
             Row(
               children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
                   child: Icon(Icons.location_on,color: AppColors.white50,),
                 ),
                 Text("Noida, Uttar Pradesh, India",style: AppTextStyles.kCaption12RegularTextStyle.copyWith(color: AppColors.white80),),
               ],
             ),
-            SizedBox(height: 10,),
+            const SizedBox(height: 10,),
             Row(
               children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
                   child: Icon(Icons.calendar_today,color: AppColors.white50,),
                 ),
                 Text("Member since Aug 2023",style: AppTextStyles.kCaption12RegularTextStyle.copyWith(color: AppColors.white80),),
               ],
             ),
-            SizedBox(height: 10,),
+            const SizedBox(height: 10,),
             const Divider(color: AppColors.white60,),
             TabBar(
               indicatorSize: TabBarIndicatorSize.tab,
@@ -110,7 +114,7 @@ class _ProfileScreenState extends State<ProfileScreen>with TickerProviderStateMi
             ),
             Expanded(
               child: TabBarView(
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 controller: tabController,
                 children:  [
                   NotificationListener<OverscrollIndicatorNotification>(
@@ -122,13 +126,13 @@ class _ProfileScreenState extends State<ProfileScreen>with TickerProviderStateMi
                     shrinkWrap: true,
                     itemCount:5,
                       itemBuilder: (context,index){
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    return const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8.0),
                       child: ConstPost(),
                     );
                   }),
                 ),
-                 Text("data"),
+                 const Text("data"),
                 ],
               ),
             ),
@@ -137,8 +141,35 @@ class _ProfileScreenState extends State<ProfileScreen>with TickerProviderStateMi
       ),
     );
   }
-  Widget EditProfile(){
-    return  Padding(
+}
+
+class EditProfile extends StatefulWidget {
+  const EditProfile({Key? key}) : super(key: key);
+
+  @override
+  State<EditProfile> createState() => _EditProfileState();
+}
+
+class _EditProfileState extends State<EditProfile> {
+  TextEditingController nameController = TextEditingController();
+  TextEditingController locationController = TextEditingController();
+  File? _image;
+  final picker = ImagePicker();
+  Future getImage(ImageSource source) async {
+    final pickedFile = await picker.getImage(source: source);
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+             } else {
+        if (kDebugMode) {
+          print('No image selected.');
+        }
+      }
+    });
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -146,7 +177,7 @@ class _ProfileScreenState extends State<ProfileScreen>with TickerProviderStateMi
           Row(
             children: [
               Text("Edit Profile",style: AppTextStyles.kBody15SemiboldTextStyle.copyWith(color: AppColors.white100),),
-              Spacer(),
+              const Spacer(),
               Material(
                 elevation: 5,
                 shape: const CircleBorder(),
@@ -157,37 +188,114 @@ class _ProfileScreenState extends State<ProfileScreen>with TickerProviderStateMi
               ) ,
             ],
           ),
-          SizedBox(height: 20,),
-          Center(
-            child: CircleAvatar(
-              radius: 40,
-              backgroundColor: AppColors.white50,
-              child: Icon(Icons.person,size: 40,),
+          const SizedBox(height: 20,),
+          Align(
+            alignment: Alignment.center,
+            child: Stack(
+              children: [
+                Container(
+                  alignment: Alignment.center,
+                  height: 100,
+                  width: 100,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(50),
+                    child: _image == null
+                        ? const CircleAvatar(
+                        radius: 50,
+                        backgroundColor: Colors.black12,
+                        child: Text(
+                          textAlign: TextAlign.center,
+                          'Upload Profile',
+                          style: TextStyle(
+                              color: AppColors.primary60, fontSize: 12),
+                        ))
+                        : ClipRRect(
+                        child: Image.file(
+                          _image!,
+                          fit: BoxFit.fill,
+                        )),
+                  ),
+                ),
+                Positioned(
+                    bottom: 0,
+                    right: 0,
+                    child: GestureDetector(
+                      onTap: () {
+                        showModalBottomSheet(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return SizedBox(
+                                height: 150,
+                                child: Column(
+                                  children: [
+                                    ListTile(
+                                      onTap: () {
+                                        getImage(ImageSource.camera);
+                                      },
+                                      leading: const Icon(
+                                        Icons.add_a_photo,
+                                        color: AppColors.primary60,
+                                      ),
+                                      title: const Text('Take Photo'),
+                                    ),
+                                    ListTile(
+                                      onTap: () {
+                                        getImage(ImageSource.gallery);
+                                      },
+                                      leading: const Icon(
+                                        Icons.photo_library,
+                                        color: AppColors.primary60,
+                                      ),
+                                      title:
+                                      const Text('Select From Gallery'),
+                                    )
+                                  ],
+                                ));
+                          },
+                        );
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        height: 34,
+                        width: 34,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(17),
+                            border: Border.all(
+                                color: AppColors.primary60, width: 1.5)),
+                        child: const Icon(
+                          Icons.edit,
+                          color: AppColors.primary60,
+                          size: 20,
+                        ),
+                      ),
+                    ))
+              ],
             ),
           ),
-          SizedBox(height: 10,),
+          const SizedBox(height: 10,),
           Text("Name",style: AppTextStyles.kBody15SemiboldTextStyle.copyWith(color: AppColors.white100),),
           SizedBox(
             height:45,
             child: TextFormField(
-              controller: _controller..text="Satyam Singh",
+              controller: nameController..text="Satyam Singh",
               cursorColor: AppColors.primary60,
               decoration: InputDecoration(
-                contentPadding: EdgeInsets.symmetric(horizontal: 10),
-                hintText: "Enter Full Name",
-                border: OutlineInputBorder(),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 10),
+                hintText: "Enter Full Name".tr,
+                border: const OutlineInputBorder(),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
-                  borderSide: BorderSide(color: AppColors.white50),
+                  borderSide: const BorderSide(color: AppColors.white50),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
-                  borderSide: BorderSide(color: AppColors.primary60),
+                  borderSide: const BorderSide(color: AppColors.primary60),
                 ),
               ),
             ),
           ),
-          SizedBox(height: 10,),
+          const SizedBox(height: 10,),
           Text("Location",style: AppTextStyles.kBody15SemiboldTextStyle.copyWith(color: AppColors.white100),),
           SizedBox(
             height:45,
@@ -195,21 +303,21 @@ class _ProfileScreenState extends State<ProfileScreen>with TickerProviderStateMi
               controller: locationController..text="Noida",
               cursorColor: AppColors.primary60,
               decoration: InputDecoration(
-                contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 10),
                 hintText: "Enter Location",
-                border: OutlineInputBorder(),
+                border: const OutlineInputBorder(),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
-                  borderSide: BorderSide(color: AppColors.white50),
+                  borderSide: const BorderSide(color: AppColors.white50),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
-                  borderSide: BorderSide(color: AppColors.primary60),
+                  borderSide: const BorderSide(color: AppColors.primary60),
                 ),
               ),
             ),
           ),
-          SizedBox(height: 20,),
+          const SizedBox(height: 20,),
           InkWell(
             onTap: (){
               Utils.replacement(context, Bottom_Page(currentindex: 3));

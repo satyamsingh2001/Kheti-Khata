@@ -17,20 +17,20 @@ class ChangeLang extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: AppColors.primary60,
-        title: Text("Change Language"),
+        title: const Text("Change Language"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
             Text("Choose your Preferred Language",style: AppTextStyles.kBody20SemiboldTextStyle.copyWith(color: AppColors.white100),),
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
             Center(
               child: GestureDetector(
                 onTap: (){
-                  var locale = Locale('en', '') ;
+                  var locale = const Locale('en', '') ;
                   Get.updateLocale(locale);
                   Utils.nevergoTo(context, Bottom_Page(currentindex: 0));
                 },
@@ -53,11 +53,11 @@ class ChangeLang extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
             Center(
               child: GestureDetector(
                 onTap: (){
-                  var locale = Locale('hi', '') ;
+                  var locale = const Locale('hi', '') ;
                   Get.updateLocale(locale);
                   Utils.nevergoTo(context, Bottom_Page(currentindex: 0));
                 },

@@ -4,7 +4,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:khetikhata/colors/colors_const.dart';
-import 'package:khetikhata/screens/bottom_nav_bar.dart';
+import 'package:khetikhata/screens/auth/create_profile/name_page.dart';
+
 import '../../styles/textstyle_const.dart';
 import 'otp_verfication.dart';
 
@@ -41,6 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
     } );
   }
 
+  @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
@@ -52,14 +54,14 @@ class _LoginScreenState extends State<LoginScreen> {
           children: [
             Center(child: Text("welcome".tr,style: AppTextStyles.kBody20SemiboldTextStyle,)),
             SizedBox(height: size.height*.1,),
-            Text("Mobile Number",style: AppTextStyles.kBody15SemiboldTextStyle.copyWith(color: AppColors.white100)),
+            Text("Mobile Number".tr,style: AppTextStyles.kBody15SemiboldTextStyle.copyWith(color: AppColors.white100)),
             TextFormField(
               controller: _phoneNumberController,
               maxLength: 10,
               cursorColor: AppColors.primary60,
               keyboardType: TextInputType.phone,
               decoration:  InputDecoration(
-                focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: AppColors.primary60)),
+                focusedBorder: const UnderlineInputBorder(borderSide: BorderSide(color: AppColors.primary60)),
                   counterText: "",
                 hintText: "Enter Mobile".tr
               ),
@@ -92,7 +94,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             TextButton(
               onPressed: () {
-                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>  Bottom_Page(currentindex: 0,)));
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const NamePage()));
               },
               child: const Text("Skip"),
             ),

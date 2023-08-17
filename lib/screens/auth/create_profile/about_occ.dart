@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_utils/get_utils.dart';
 import '../../../colors/colors_const.dart';
 import '../../../const/constContainer.dart';
 import '../../../styles/textstyle_const.dart';
@@ -85,7 +86,7 @@ class _AboutOccState extends State<AboutOcc> {
                 height: size.height / 7,
               ),
               Text(
-                "What should we call you?",
+                "Who are you?".tr,
                 style: AppTextStyles.kBody20SemiboldTextStyle
                     .copyWith(color: AppColors.white100),
               ),
@@ -99,9 +100,9 @@ class _AboutOccState extends State<AboutOcc> {
                   itemBuilder: (context, index) {
                 return CustomRadio(
                   index: index,
-                  text: name[index],
+                  text: name[index].tr,
                   icon: iconName[index],
-                  isSelected: _selectedOption == 0,
+                  isSelected: _selectedOption == index,
                   onSelect: _handleOptionSelected,
                 );
               }),
@@ -118,7 +119,7 @@ class _AboutOccState extends State<AboutOcc> {
                   color: _isClick ? AppColors.primary60 : AppColors.white50,
                   child: Center(
                       child: Text(
-                    "Next",
+                    "next".tr,
                     style: AppTextStyles.kBody15SemiboldTextStyle
                         .copyWith(color: AppColors.white),
                   )),

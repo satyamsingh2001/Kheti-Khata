@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:khetikhata/colors/colors_const.dart';
 import 'package:khetikhata/const/constContainer.dart';
+import 'package:khetikhata/const/constString.dart';
 
 import '../../../styles/textstyle_const.dart';
 import '../../../utils/Utils.dart';
@@ -41,7 +43,7 @@ class SavedNews extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Invite buyers or seller on Kheti Khata and get engaged",style: AppTextStyles.kBody15RegularTextStyle.copyWith(color: AppColors.white100),),
+                          Text("Invite buyers or seller on Kheti Khata and get engaged".tr,style: AppTextStyles.kBody15RegularTextStyle.copyWith(color: AppColors.white100),),
                           const SizedBox(height: 40,),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -56,7 +58,7 @@ class SavedNews extends StatelessWidget {
                                     ),
                                     clipBehavior: Clip.antiAlias,
                                     child: IconButton(onPressed: (){
-                                      Utils.shareContent();
+                                      // Utils.shareContent();
                                     }, icon: const Icon(Icons.share)),
                                   ),
                                 ),
@@ -67,7 +69,7 @@ class SavedNews extends StatelessWidget {
                                   clipBehavior: Clip.antiAlias,
                                   child: IconButton(onPressed: (){
                                     Utils.shareContent();
-                                  }, icon: const Icon(CupertinoIcons.cart)),
+                                  }, icon: Image.asset(save)),
                                 ),
 
                               ],

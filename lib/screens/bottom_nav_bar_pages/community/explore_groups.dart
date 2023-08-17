@@ -220,7 +220,7 @@ class _RequestAGroupState extends State<RequestAGroup> {
               cursorColor: AppColors.primary60,
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.symmetric(horizontal: 8),
-                hintText: "Enter Full Name",
+                hintText: "Enter Full Name".tr,
                 border: OutlineInputBorder(),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
