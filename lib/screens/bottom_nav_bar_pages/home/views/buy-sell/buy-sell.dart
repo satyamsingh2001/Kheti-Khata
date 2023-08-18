@@ -141,7 +141,7 @@ class _BuySellState extends State<BuySell> with TickerProviderStateMixin{
                 children: const [
                   SellersPost(),
                   BuyersPost(),
-                  All(),
+                  BuyersPost(),
                   // YourGroup()
                 ],
               ),

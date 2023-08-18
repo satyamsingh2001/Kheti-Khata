@@ -1,9 +1,7 @@
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-
 import '../../../../colors/colors_const.dart';
 import '../../../../const/constContainer.dart';
 import '../../../../styles/textstyle_const.dart';
@@ -134,14 +132,14 @@ class _GeneralPostState extends State<GeneralPost> {
               TextFormField(
                 autofocus: true,
                 cursorColor: AppColors.primary60,
-                maxLines: 10,
+                maxLines: null,
                 decoration: const InputDecoration(
                   hintText: "What  do you want to share?",
                   enabledBorder: InputBorder.none,
                   focusedBorder: InputBorder.none,
                 ),
               ),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               Wrap(
                 alignment: WrapAlignment.start,
                 spacing: 8.0,
@@ -166,9 +164,9 @@ class _GeneralPostState extends State<GeneralPost> {
                         top: 5,
                         child: CircleAvatar(
                           radius: 15,
-                          backgroundColor: Color(0xff554f51),
+                          backgroundColor: const Color(0xff554f51),
                           child: IconButton(
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.clear,
                               size: 10,
                             ),
@@ -182,16 +180,18 @@ class _GeneralPostState extends State<GeneralPost> {
                   );
                 }).toList(),
               ),
-              Spacer(),
-              Text(
-                "Photos ${_selectedPhotos.length}/$maxPhotos ",
-                style: TextStyle(color: AppColors.white50),
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0, bottom: 8.0),
+                child: Text(
+                  "Photos ${_selectedPhotos.length}/$maxPhotos ",
+                  style: const TextStyle(color: AppColors.white50),
+                ),
               ),
               ListTile(
-                onTap: canAddMorePhotos ? _selectPhoto : null, // Disable onTap if max photos reached
-                leading: Icon(Icons.add_photo_alternate_outlined),
-                title: Text("Add Photos"),
-                tileColor: canAddMorePhotos ? Colors.grey[200]:null, // Change tile color when max photos reached
+                onTap: canAddMorePhotos ? _selectPhoto : null,
+                leading: const Icon(Icons.add_photo_alternate_outlined),
+                title: const Text("Add Photos"),
+                tileColor: canAddMorePhotos ? Colors.grey[200] : null,
               ),
             ],
           ),

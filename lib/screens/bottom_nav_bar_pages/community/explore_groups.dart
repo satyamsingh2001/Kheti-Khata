@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:khetikhata/colors/colors_const.dart';
@@ -22,7 +23,7 @@ class ExploreGroups extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Explore Groups",style: AppTextStyles.kBody20RegularTextStyle.copyWith(color: AppColors.white100),),
+              Text("Explore Groups".tr,style: AppTextStyles.kBody20RegularTextStyle.copyWith(color: AppColors.white100),),
               NotificationListener<OverscrollIndicatorNotification>(
                 onNotification: (notification){
                   notification.disallowIndicator();
@@ -79,7 +80,7 @@ class ExploreGroups extends StatelessWidget {
                                 )
                               ],
                             ),
-                            Spacer(),
+                            const Spacer(),
                             Padding(
                               padding: const EdgeInsets.only(right: 8.0),
                               child: ConstantContainer(
@@ -110,14 +111,14 @@ class ExploreGroups extends StatelessWidget {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text("Request a group",style: AppTextStyles.kBody15RegularTextStyle.copyWith(color: AppColors.white100),),
-                                    SizedBox(height: 5,),
-                                    Text("Can't find what you are looking for ?\nRequest your own group!",style: AppTextStyles.kCaption12RegularTextStyle.copyWith(color: AppColors.white80,wordSpacing: 2),),
+                                    Text("Request a group".tr,style: AppTextStyles.kBody15RegularTextStyle.copyWith(color: AppColors.white100),),
+                                    const SizedBox(height: 5,),
+                                    Text("Can't find what you are looking for Request your own group!".tr,style: AppTextStyles.kCaption12RegularTextStyle.copyWith(color: AppColors.white80,wordSpacing: 2),),
                                     const SizedBox(height: 10,),
                                     InkWell(
                                       onTap: (){
                                       showModalBottomSheet(context: context, builder: (context){
-                                        return ConstantContainer(
+                                        return const ConstantContainer(
                                           radiusBorder: 20,
                                           child: RequestAGroup(),
                                         );
@@ -175,7 +176,9 @@ class _RequestAGroupState extends State<RequestAGroup> {
     Navigator.pop(context);
       Utils.showToastMsg("Request send successfully");
 
-      print('Text is longer than 5 characters. Submitting...');
+      if (kDebugMode) {
+        print('Text is longer than 5 characters. Submitting...');
+      }
     }
   }
 
@@ -195,7 +198,7 @@ class _RequestAGroupState extends State<RequestAGroup> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("Request a group",style: AppTextStyles.kBody20SemiboldTextStyle.copyWith(color: AppColors.white100),),
+              Text("Request a group".tr,style: AppTextStyles.kBody20SemiboldTextStyle.copyWith(color: AppColors.white100),),
               Material(
                 elevation: 5,
                 shape: const CircleBorder(),
@@ -206,10 +209,10 @@ class _RequestAGroupState extends State<RequestAGroup> {
               ) ,
             ],
           ),
-          SizedBox(height: 10,),
-          Text("Request a new group of your interests. We will approve group ideas with high interest and add them ontoExplore page.",style: AppTextStyles.kBody15RegularTextStyle.copyWith(color: AppColors.white70),),
-          SizedBox(height: 10,),
-          Text("Name of Group",style: AppTextStyles.kCaption12SemiboldTextStyle.copyWith(color: AppColors.white100),),
+          const SizedBox(height: 10,),
+          Text("Request a new group of your interests. We will approve group ideas with high interest and add them onto Explore page.".tr,style: AppTextStyles.kBody15RegularTextStyle.copyWith(color: AppColors.white70),),
+          const SizedBox(height: 10,),
+          Text("Name of Group".tr,style: AppTextStyles.kCaption12SemiboldTextStyle.copyWith(color: AppColors.white100),),
            Padding(
           padding: const EdgeInsets.all(8.0),
           child: SizedBox(
@@ -219,30 +222,30 @@ class _RequestAGroupState extends State<RequestAGroup> {
               onChanged: _checkInputLength,
               cursorColor: AppColors.primary60,
               decoration: InputDecoration(
-                contentPadding: EdgeInsets.symmetric(horizontal: 8),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 8),
                 hintText: "Enter Full Name".tr,
-                border: OutlineInputBorder(),
+                border: const OutlineInputBorder(),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
-                  borderSide: BorderSide(color: AppColors.white50),
+                  borderSide: const BorderSide(color: AppColors.white50),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
-                  borderSide: BorderSide(color: AppColors.primary60),
+                  borderSide: const BorderSide(color: AppColors.primary60),
                 ),
               ),
             ),
           ),
         ),
-          SizedBox(height: 10,),
-          Text("Choose the type of the group of your topic",style: AppTextStyles.kCaption12SemiboldTextStyle.copyWith(color: AppColors.white50),),
+          const SizedBox(height: 10,),
+          Text("Choose the type of the group of your topic".tr,style: AppTextStyles.kCaption12SemiboldTextStyle.copyWith(color: AppColors.white50),),
 
        Padding(
          padding: const EdgeInsets.all(8.0),
          child: Row(
            children: [
-           CustomRadioButton("Buy-Sell",1),
-           CustomRadioButton("Social",2),
+           customRadioButton("Buy-Sell".tr,1),
+           customRadioButton("Social".tr,2),
          ],),
        ),
           Padding(
@@ -257,7 +260,7 @@ class _RequestAGroupState extends State<RequestAGroup> {
                   radiusBorder: 40,
                   child: Center(child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text("Request",style: AppTextStyles.kBody15SemiboldTextStyle.copyWith(color: AppColors.white),),
+                    child: Text("Request".tr,style: AppTextStyles.kBody15SemiboldTextStyle.copyWith(color: AppColors.white),),
                   )),
                 ),
               ),
@@ -267,7 +270,7 @@ class _RequestAGroupState extends State<RequestAGroup> {
       ),
     );
   }
-  Widget CustomRadioButton(String text, int index) {
+  Widget customRadioButton(String text, int index) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: InkWell(
