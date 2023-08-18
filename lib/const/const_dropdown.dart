@@ -1,26 +1,23 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../colors/colors_const.dart';
 import '../styles/textstyle_const.dart';
 
 class ConstantDropdown extends StatefulWidget {
   final List<String> options;
-  final String selectedOption;
   final ValueChanged onChanged;
   final Color iconColor;
   final Color dropdownColor;
   final Color textColor;
-  final FormFieldValidator? validator;
-  final String? hint;
+  final String hint;
 
-  ConstantDropdown({
+  const ConstantDropdown({super.key,
     required this.options,
-    required this.selectedOption,
     required this.onChanged,
     required this.iconColor,
     required this.dropdownColor,
     required this.textColor,
-    this.validator,
-    this.hint,
+    required this.hint,
   });
 
   @override
@@ -32,14 +29,38 @@ class _ConstantDropdownState extends State<ConstantDropdown> {
   Widget build(BuildContext context) {
     return DropdownButtonHideUnderline(
       child: DropdownButtonFormField<String>(
-        hint: Text(widget.hint??""),
+        hint: Text(widget.hint),
         decoration: const InputDecoration(
-          enabledBorder: InputBorder.none,
-          focusedBorder: InputBorder.none,
+          border:  OutlineInputBorder(),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: AppColors.white50,
+            ),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: AppColors.white50,
+            ),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.red,
+            ),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.red,
+            ),
+          ),
         ),
-        validator: widget.validator,
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return 'Please select an option';
+          }
+          return null;
+        },
         dropdownColor: widget.dropdownColor,
-        value: widget.selectedOption,
+        value: null,
         onChanged: widget.onChanged,
         icon: const Icon(CupertinoIcons.chevron_down),
         iconSize: 15,

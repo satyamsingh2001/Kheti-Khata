@@ -3,9 +3,9 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:khetikhata/screens/choose_lang_page.dart';
-import 'lang/languages.dart';
-import 'notifications_services/local_notifications.dart';
+import 'auth/choose_lang_page.dart';
+import 'services/lang/languages.dart';
+import 'services/notifications_services/local_notifications.dart';
 
 Future<void> backgroundHandler(RemoteMessage message) async {
   if (kDebugMode) {
