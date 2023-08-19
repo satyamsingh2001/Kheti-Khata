@@ -96,10 +96,12 @@ class _BuySellState extends State<BuySell> with TickerProviderStateMixin{
                   borderWidth: 1,
                   borderColor: AppColors.primary60,
                   radiusBorder: 20,
-                  child: const Center(
+                  child:  Center(
                     child: Tab(
-                      child: Text(
-                        "Seller posts",
+                      child: Center(
+                        child: Text(
+                          "Seller posts".tr,
+                        ),
                       ),
                     ),
                   ),
@@ -109,10 +111,12 @@ class _BuySellState extends State<BuySell> with TickerProviderStateMixin{
                   borderWidth: 1,
                   borderColor: AppColors.primary60,
                   radiusBorder: 20,
-                  child: const Center(
+                  child:  Center(
                     child: Tab(
-                      child: Text(
-                        "Buyers posts",
+                      child: Center(
+                        child: Text(
+                          "Buyers posts".tr,
+                        ),
                       ),
                     ),
                   ),
@@ -122,10 +126,12 @@ class _BuySellState extends State<BuySell> with TickerProviderStateMixin{
                   borderWidth: 1,
                   borderColor: AppColors.primary60,
                   radiusBorder: 20,
-                  child: const Center(
+                  child:  Center(
                     child: Tab(
-                      child: Text(
-                        "All",
+                      child: Center(
+                        child: Text(
+                          "All".tr,
+                        ),
                       ),
                     ),
                   ),
@@ -250,7 +256,7 @@ class BuyersPost extends StatelessWidget {
                                 child: Row(
                                   children: [
                                     const Icon(Icons.call,color: AppColors.white,),
-                                    Text("Call Buyer",style: AppTextStyles.kBody15RegularTextStyle.copyWith(color: AppColors.white),)
+                                    Text("Call Buyer".tr,style: AppTextStyles.kBody15RegularTextStyle.copyWith(color: AppColors.white),)
                                   ],
                                 ),
                               ),
@@ -370,7 +376,7 @@ class SellersPost extends StatelessWidget {
                                 child: Row(
                                   children: [
                                     const Icon(Icons.call,color: AppColors.white,),
-                                    Text("Call Seller",style: AppTextStyles.kBody15RegularTextStyle.copyWith(color: AppColors.white),)
+                                    Text("Call Seller".tr,style: AppTextStyles.kBody15RegularTextStyle.copyWith(color: AppColors.white),)
                                   ],
                                 ),
                               ),

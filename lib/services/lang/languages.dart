@@ -26,9 +26,9 @@ class Languages extends Translations {
           "Select Group": "Select Group",
           "select atleast one group":
               "you are almost there, please select atleast one group to onboard.",
-          "day ago":" day ago",
-          "Posts":" Posts",
-          "Members":" Members",
+          "day ago": " day ago",
+          "Posts": " Posts",
+          "Members": " Members",
 
 //home
           "Choose a group": "Choose a group",
@@ -43,6 +43,29 @@ class Languages extends Translations {
               "Invite buyers or seller on Kheti Khata and get engaged",
           "Share App": "Share App",
           "message": "Mango Trading",
+          "What do you want to post?": "What do you want to post?",
+          "Create a Post": "Create a Post",
+          "Sell Post": "Sell Post",
+          "Buy Post": "Buy Post",
+          "General Post": "General Post",
+          "I want to sell agri produce.": "I wan to sell agri produce.",
+          "I want to buy agri produce.": "I wan to sell agri produce.",
+          "I want to share my thoughts.": "I want to share my thoughts.",
+          "What do you want to share?": "What do you want to share?",
+          "Publish": "Publish",
+          "New Sell Post": "New Sell Post",
+          "Posting on": "Posting on",
+          "Add photos": "Add Photos",
+          "Photos": "Photos",
+          "Select Commodity": "Select Commodity",
+          "Price / Unit": "Price / Unit",
+          "Quantity": "Quantity",
+          "Description": "Description",
+          "Select Payment Method": "Select Payment Method",
+          "New Buy Post": "New Buy Post",
+          "Min Price": "Min Price",
+          "Max Price": "Max Price",
+          "New General Post": "New General Post",
 
           //groups
           "Request a group": "Request a group",
@@ -68,15 +91,33 @@ class Languages extends Translations {
           "Enter Location": "Enter Location",
           "Take Photo": "Take Photo",
           "Select From Gallery": "Select From Gallery",
-          "Edit":"Edit",
+          "Edit": "Edit",
+          "Payment Condition": "Payment Condition",
+          "Call Seller": "Call Seller",
+          "Call Buyer": "Call Buyer",
+          "group": "group",
+          "Seller posts": "Sellers Posts",
+          "Buyers posts": "Buyers Posts",
+          "All": "All",
+
+//otp
+
+          "OTP Verification": "OTP Verification",
+          'Please enter OTP received on': 'Please enter OTP received on',
+          'Wrong OTP': 'Wrong OTP',
+          "Verify": "Verify",
+          'Didn’t you receive any code?': 'Didn’t you receive any code?',
+          'Resend Code': 'Resend Code',
+          "Request send successfully":"Request send successfully",
+          "Post Published Successfully":"Post Published Successfully",
+          "Profile Updated Successfully":"Profile Updated Successfully",
 
           //bottom nav bar
           "Home": "Home",
           "Notification": "Notification",
           "Community": "Community",
           "Profile": "Profile",
-          "What do you want to post?": "What do you want to post?",
-          "Create a Post": "Create a Post",
+
 
           //setting
           "Setting": "Setting",
@@ -98,13 +139,13 @@ class Languages extends Translations {
               "अपनी भाषा बदलने के इच्छुक हैं?",
           "Cancel": "रद्द करें",
           "next": "आगे",
-          "day ago":" दिन पहले",
-          "Posts":" पोस्ट",
-          "Members":" सदस्य",
+          "day ago": " दिन पहले",
+          "Posts": " पोस्ट",
+          "Members": " सदस्य",
+          "Select Commodity": "फसल",
 
           //auth
           "Kheti Khata": "खेती खाता",
-          'agriculture': 'आपका क्या नाम है?',
           'name': 'सत्यम सिंह',
           'welcome': "खेती खाता ऐप में आपका स्वागत है",
           "otp": "ओटीपी प्राप्त करें",
@@ -126,6 +167,8 @@ class Languages extends Translations {
 
           "Where do you want to publish your post":
               "आप अपनी पोस्ट कहां प्रकाशित करना चाहते हैं?",
+          "What do you want to share?": "आप क्या साझा करना चाहते हैं?",
+
           "Your Groups": "आपका ग्रुप्स",
           "News Feed": "न्यूज़ फीड",
           "agriculture": "अग्रिकल्चर",
@@ -136,15 +179,52 @@ class Languages extends Translations {
           "Notification": "नोटिफिकेशन",
           "Community": "ग्रुप्स",
           "Profile": "प्रोफाइल",
-          "Ok": "Ok",
+
+
+//otp
+
+          "OTP Verification": "ओटीपी वेरिफिकेशन",
+          'Please enter OTP received on': 'कृपया प्राप्त ओटीपी दर्ज करें',
+          'Wrong OTP': 'गलत ओटीपी',
+          "Verify": "वेरिफाई",
+          'Didn’t you receive any code?': 'क्या आपको कोई कोड नहीं मिला?',
+          'Resend Code': 'पुन: कोड भेजे',
+          "Request send successfully":"अनुरोध सफलतापूर्वक भेजा गया",
+          "Post Published Successfully":"पोस्ट सफलतापूर्वक प्रकाशित गया",
+          "Profile Updated Successfully":"प्रोफाइल को सफलतापूर्वक अपडेट किया गया",
+
+
 
           //home
+          "Seller posts": "सेलर पोस्ट",
+          "Buyers posts": "बायर पोस्ट",
+          "All": "सभी",
           "Invite buyers or seller on Kheti Khata and get engaged":
               "खेती खाता पर खरीददारों या विक्रेता को आमंत्रित करें और शामिल हों",
           "Share App": "ऐप शेयर करें",
           "message": "आम का व्यापार",
-          "What do you want to post?": "What do you want to post?",
-          "Create a Post": "Create a Post",
+          "What do you want to post?": "आप क्या पोस्ट करना चाहते हैं?",
+          "Create a Post": "एक पोस्ट बनाएं",
+          "Sell Post": "बेचें",
+          "Buy Post": "खरीदें",
+          "General Post": "सामान्य पोस्ट",
+          "I want to sell agri produce.": "मैं कृषि उपज बेचना चाहता हूं।",
+          "I want to buy agri produce.": "मैं कृषि उपज बेचना चाहता हूं।",
+          "I want to share my thoughts.": "मैं अपने विचार साझा करना चाहता हूं.",
+          "Publish": "पोस्ट",
+          "New Sell Post": "नई बिक्री पोस्ट",
+          "Posting on": " पर पोस्ट कर रहा हूँ",
+          "Add photos": "फोटो जोडो",
+          "Photos": "फोटो",
+          "Price / Unit": "कीमत / दर",
+          "Quantity": "मात्रा",
+          "Description": "विवरण",
+          "Select Payment Method": "भुगतान का तरीका चुनें",
+          "New Buy Post": "नई खरीद पोस्ट",
+          "Min Price": "न्यूनतम कीमत",
+          "Max Price": "अधिकतम कीमत",
+          "New General Post": "नई सामान्य पोस्ट",
+          "group": "ग्रुप्स",
 
           //groups
           "Request a group": "एक समूह का अनुरोध करें",
@@ -158,6 +238,9 @@ class Languages extends Translations {
           "Join": "जुड़े",
           "Explore Groups": "समूहों का अन्वेषण करें",
           "New Updates": "नए अपडेट",
+          "Payment Condition": "भुगतान",
+          "Call Seller": "काल सेलर",
+          "Call Buyer": "काल बायर",
 
           //profile
           "My Posts": "मेरी पोस्टे",
@@ -170,7 +253,7 @@ class Languages extends Translations {
           "Enter Location": "स्थान दर्ज करें",
           "Take Photo": "फोटो ले",
           "Select From Gallery": "गैलरी से चुनें",
-          "Edit":"संपादन",
+          "Edit": "संपादन",
 
           //setting
           "Setting": "सेटिंग",

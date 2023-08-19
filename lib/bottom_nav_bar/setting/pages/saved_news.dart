@@ -4,9 +4,7 @@ import 'package:get/get.dart';
 import 'package:khetikhata/colors/colors_const.dart';
 import 'package:khetikhata/const/constContainer.dart';
 import 'package:khetikhata/const/constString.dart';
-
 import '../../../styles/textstyle_const.dart';
-import '../../../utils/Utils.dart';
 
 class SavedNews extends StatelessWidget {
   const SavedNews({Key? key}) : super(key: key);
@@ -68,7 +66,7 @@ class SavedNews extends StatelessWidget {
                                   ),
                                   clipBehavior: Clip.antiAlias,
                                   child: IconButton(onPressed: (){
-                                    Utils.shareContent();
+                                    // Utils.shareContent();
                                   }, icon: Image.asset(save)),
                                 ),
 

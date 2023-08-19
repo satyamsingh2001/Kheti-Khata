@@ -6,26 +6,26 @@ import 'package:khetikhata/const/constContainer.dart';
 import 'package:khetikhata/const/const_dropdown.dart';
 import 'package:khetikhata/styles/textstyle_const.dart';
 import '../../../../../utils/Utils.dart';
+import '../../widgets/addphoto_widgets.dart';
 import 'buy-sell.dart';
-import 'sell_post.dart';
 
-class BuyPost extends StatefulWidget {
-  const BuyPost({Key? key}) : super(key: key);
+
+class SellPost extends StatefulWidget {
+  const SellPost({Key? key}) : super(key: key);
 
   @override
-  State<BuyPost> createState() => _BuyPostState();
+  State<SellPost> createState() => _SellPostState();
 }
 
-class _BuyPostState extends State<BuyPost> {
+class _SellPostState extends State<SellPost> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  String isSelect = "";
-  String isSelectPayment = "";
+  String isSelect = "Select ";
+  String isSelectPayment ="";
   String unit1 = "Kg";
   String unit2 = "Kg";
-  int value1 =
-      1; // Default selected index for the first set of customRadioButtons
-  int value2 =
-      1; // Default selected index for the second set of customRadioButtons
+  int value1 = 1; // Default selected index for the first set of CustomRadioButtons
+  int value2 = 1; // Default selected index for the second set of CustomRadioButtons
+
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +43,7 @@ class _BuyPostState extends State<BuyPost> {
                     children: [
                       IconButton(
                         onPressed: () {
-                          Navigator.pop(context);
+                        Navigator.pop(context);
                         },
                         icon: const Icon(
                           CupertinoIcons.multiply,
@@ -51,9 +51,8 @@ class _BuyPostState extends State<BuyPost> {
                         ),
                       ),
                       Text(
-                        "New Buy Post",
-                        style: AppTextStyles.kBody15SemiboldTextStyle
-                            .copyWith(color: AppColors.white100),
+                        "New Sell Post".tr,
+                        style: AppTextStyles.kBody15SemiboldTextStyle.copyWith(color: AppColors.white100),
                       ),
                       GestureDetector(
                         onTap: (){
@@ -69,7 +68,7 @@ class _BuyPostState extends State<BuyPost> {
                             child: Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 15.0,vertical: 8),
                               child: Text(
-                                "Publish",
+                                "Publish".tr,
                                 style: AppTextStyles.kBody15RegularTextStyle.copyWith(color: AppColors.white),
                               ),
                             ),
@@ -101,13 +100,11 @@ class _BuyPostState extends State<BuyPost> {
                               children: <TextSpan>[
                                 TextSpan(
                                   text: 'Satyam Singh ',
-                                  style: AppTextStyles.kBody15RegularTextStyle
-                                      .copyWith(color: AppColors.white80),
+                                  style: AppTextStyles.kBody15RegularTextStyle.copyWith(color: AppColors.white80),
                                 ),
                                 TextSpan(
                                   text: '(Farmer)'.tr,
-                                  style: AppTextStyles.kBody15SemiboldTextStyle
-                                      .copyWith(color: AppColors.white100),
+                                  style: AppTextStyles.kBody15SemiboldTextStyle.copyWith(color: AppColors.white100),
                                 ),
                               ],
                             ),
@@ -116,19 +113,16 @@ class _BuyPostState extends State<BuyPost> {
                             text: TextSpan(
                               children: <TextSpan>[
                                 TextSpan(
-                                  text: 'Posting on ',
-                                  style: AppTextStyles.kCaption12RegularTextStyle
-                                      .copyWith(color: AppColors.white80),
+                                  text: 'Posting on'.tr,
+                                  style: AppTextStyles.kCaption12RegularTextStyle.copyWith(color: AppColors.white80),
                                 ),
                                 TextSpan(
-                                  text: 'Onion Trading ',
-                                  style: AppTextStyles.kCaption12SemiboldTextStyle
-                                      .copyWith(color: AppColors.white100),
+                                  text: ' Onion Trading ',
+                                  style: AppTextStyles.kCaption12SemiboldTextStyle.copyWith(color: AppColors.white100),
                                 ),
                                 TextSpan(
-                                  text: ' group',
-                                  style: AppTextStyles.kCaption12RegularTextStyle
-                                      .copyWith(color: AppColors.white80),
+                                  text: 'group'.tr,
+                                  style: AppTextStyles.kCaption12RegularTextStyle.copyWith(color: AppColors.white80),
                                 ),
                               ],
                             ),
@@ -137,60 +131,33 @@ class _BuyPostState extends State<BuyPost> {
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 20,
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: AddPhotoWidget(),
                   ),
-                  ConstantContainer(
-                    borderColor: AppColors.white50,
-                    radiusBorder: 3,
-                    borderWidth: 1,
-                    child: ConstantDropdown(
-                      hint: "Select Commodity",
-                      options: const [
-                        "Onion",
-                        "Nasik Onion",
-                        "Rajasthan Onion",
-                        "MP Onion"
-                      ],
-                      onChanged: (value) {
-                        setState(() {
-                          isSelect = value;
-                        });
-                      },
-                      iconColor: AppColors.white80,
-                      dropdownColor: AppColors.white,
-                      textColor: AppColors.white100,
-                    ),
+                  const SizedBox(height: 5,),
+                  ConstantDropdown(
+                    hint: "Select Commodity".tr,
+                    options: const [ "Onion", "Nasik Onion", "Rajasthan Onion", "MP Onion"],
+                    onChanged: (value) {
+                      setState(() {
+                        isSelect = value;
+                      });
+                    },
+                    iconColor: AppColors.white80,
+                    dropdownColor: AppColors.white,
+                    textColor: AppColors.white100,
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
+                  const SizedBox(height: 10,),
                   const ConstTextFieldBS(
                     hintText: "Noida Uttar Pradesh",
                     keyboardType: TextInputType.text,
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    children: [
-                      Expanded(
-                          child:ConstTextFieldBS(
-                            hintText: "Min Price",
-                            prefix: "₹",
-                            suffix: "/ $unit1",
+                   ConstTextFieldBS(
+                    hintText: "Price / Unit".tr,
+                    prefix: "₹",
+                    suffix: "/ $unit1",
 
-                          )),
-                      const SizedBox(width: 10,),
-                      Expanded(
-                          child:ConstTextFieldBS(
-                            hintText: "Max Price",
-                            prefix: "₹",
-                            suffix: "/ $unit1",
-
-                          )),
-
-                    ],
                   ),
                   Row(
                     children: [
@@ -199,12 +166,10 @@ class _BuyPostState extends State<BuyPost> {
                       customRadioButton("Packet", 3, 1),
                     ],
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
                   ConstTextFieldBS(
-                    hintText: "Quantity",
+                    hintText: "Quantity".tr,
                     suffix: "/ $unit2",
+
                   ),
                   Row(
                     children: [
@@ -213,21 +178,14 @@ class _BuyPostState extends State<BuyPost> {
                       customRadioButton("Ton", 3, 2),
                     ],
                   ),
-                  const ConstTextFieldBS(
-                    hintText: "Description",
+                   ConstTextFieldBS(
+                    hintText: "Description".tr,
                     maxLine: 5,
                     keyboardType: TextInputType.text,
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
                   ConstantDropdown(
-                    hint:"Select Payment Method",
-                    options: const [
-                      "Advance",
-                      "On Delivery",
-                      "Credit",
-                    ],
+                    hint:"Select Payment Method".tr,
+                    options: const ["Advance", "On Delivery", "Credit", ],
                     onChanged: (value) {
                       setState(() {
                         isSelectPayment = value;
@@ -237,9 +195,7 @@ class _BuyPostState extends State<BuyPost> {
                     dropdownColor: AppColors.white,
                     textColor: AppColors.white100,
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
+                  const SizedBox(height: 10,),
                 ],
               ),
             ),
@@ -266,27 +222,15 @@ class _BuyPostState extends State<BuyPost> {
         },
         child: ConstantContainer(
           radiusBorder: 20,
-          color: (group == 1)
-              ? (value1 == index)
-                  ? AppColors.primary60
-                  : AppColors.white
-              : (value2 == index)
-                  ? AppColors.primary60
-                  : AppColors.white,
+          color: (group == 1) ? (value1 == index) ? AppColors.primary60 : AppColors.white : (value2 == index) ? AppColors.primary60 : AppColors.white,
           borderColor: AppColors.white50,
           child: Center(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+              padding: const EdgeInsets.symmetric(vertical: 8.0,horizontal: 15),
               child: Text(
                 text,
                 style: TextStyle(
-                  color: (group == 1)
-                      ? (value1 == index)
-                          ? AppColors.white
-                          : AppColors.white100
-                      : (value2 == index)
-                          ? AppColors.white
-                          : AppColors.white100,
+                  color: (group == 1) ? (value1 == index) ? AppColors.white : AppColors.white100 : (value2 == index) ? AppColors.white : AppColors.white100,
                 ),
               ),
             ),
@@ -296,4 +240,65 @@ class _BuyPostState extends State<BuyPost> {
     );
   }
 
+}
+
+class ConstTextFieldBS extends StatefulWidget {
+  final String ?hintText;
+  final String ?suffix;
+  final String ?prefix;
+  final  TextInputType? keyboardType;
+  final int ?maxLine;
+
+   const ConstTextFieldBS({Key? key , this.hintText,this.suffix,this.prefix,this.keyboardType,  this.maxLine}) : super(key: key);
+
+  @override
+  State<ConstTextFieldBS> createState() => _ConstTextFieldBSState();
+}
+
+class _ConstTextFieldBSState extends State<ConstTextFieldBS> {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8.0),
+      child: TextFormField(
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return 'Field cannot be empty';
+          }
+          return null;
+        },
+        maxLines:widget.maxLine ?? 1,
+        cursorColor: AppColors.primary60,
+        keyboardType:widget.keyboardType??TextInputType.phone,
+        decoration: InputDecoration(
+          border: const OutlineInputBorder(),
+          enabledBorder: const OutlineInputBorder(
+            borderSide: BorderSide(
+              color: AppColors.white50,
+            ),
+          ),
+          focusedBorder: const OutlineInputBorder(
+            borderSide: BorderSide(
+              color: AppColors.white50,
+            ),
+          ),
+          errorBorder: const OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.red,
+            ),
+          ),
+          focusedErrorBorder: const OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.red,
+            ),
+          ),
+
+          hintText: widget.hintText,
+          suffixText: widget.suffix,
+          prefixText: widget.prefix,
+        ),
+      ),
+    );
+
+  }
 }

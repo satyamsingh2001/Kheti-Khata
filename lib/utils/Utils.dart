@@ -90,7 +90,7 @@ class Utils{
 
   static void showToastMsg(String? msg, {bool isErrorType = false}) {
     Fluttertoast.showToast(
-        msg: msg!,
+        msg: msg!.tr,
         backgroundColor: isErrorType ? Colors.red : Colors.green,
         textColor: Colors.white,
         toastLength: Toast.LENGTH_LONG,

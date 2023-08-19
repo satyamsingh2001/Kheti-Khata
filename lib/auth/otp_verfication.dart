@@ -1,11 +1,13 @@
 import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pinput/pinput.dart';
 import '../../colors/colors_const.dart';
 import '../../styles/textstyle_const.dart';
 import '../../utils/Utils.dart';
-import '../bottom_nav_bar_pages/bottom_nav_bar.dart';
+import 'create_profile/name_page.dart';
 import 'login_screen.dart';
 
 class OtpVerification extends StatefulWidget {
@@ -57,7 +59,7 @@ class _OtpVerificationState extends State<OtpVerification> {
       width: 56,
       height: 56,
       textStyle: const TextStyle(
-          fontSize: 30, color: AppColors.primary, fontWeight: FontWeight.w600),
+          fontSize: 30, color: AppColors.primary60, fontWeight: FontWeight.w600),
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border.all(color: const Color.fromRGBO(203, 212, 225, 1)),
@@ -72,14 +74,14 @@ class _OtpVerificationState extends State<OtpVerification> {
             children: [
               const SizedBox(height: 40),
               const SizedBox(height: 32),
-              const Text(
-                 'OTP Verification',
+               Text(
+                 'OTP Verification'.tr,
                 textAlign: TextAlign.center,
                 style: AppTextStyles.kBody20SemiboldTextStyle,
               ),
               const SizedBox(height: 10),
               Text(
-                 'Please enter OTP received on',
+                 'Please enter OTP received on'.tr,
                 textAlign: TextAlign.center,
                 style: AppTextStyles.kCaption12RegularTextStyle
                     .copyWith(color: AppColors.neutralLight),
@@ -102,22 +104,22 @@ class _OtpVerificationState extends State<OtpVerification> {
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.primary60),
+                    backgroundColor: AppColors.primary60,shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
                 onPressed: () async {
                   try {
                     PhoneAuthCredential credential = PhoneAuthProvider.credential(
                         verificationId: LoginScreen.verify, smsCode: code);
                     await auth.signInWithCredential(credential);
-                    Utils.replacement(context, BottomPage(currentIndex: 0,));
+                    Utils.replacement(context, const NamePage());
                   } catch (e) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Wrong OTP'),
+                       SnackBar(
+                        content: Text('Wrong OTP'.tr),
                       ),
                     );
                   }
                 },
-                child: const Text("Verify"),
+                child:  Text("Verify".tr),
               ),
               const SizedBox(height: 10),
               Align(
@@ -129,7 +131,7 @@ class _OtpVerificationState extends State<OtpVerification> {
                   child: RichText(
                     text: TextSpan(children: [
                       TextSpan(
-                        text: 'Didn’t you receive any code?',
+                        text: 'Didn’t you receive any code?'.tr,
                         style: AppTextStyles.kCaption12SemiboldTextStyle
                             .copyWith(
                             color: AppColors.neutralLight, fontSize: 12),
@@ -140,7 +142,7 @@ class _OtpVerificationState extends State<OtpVerification> {
                         ),
                       ),
                       TextSpan(
-                        text: 'Resend Code',
+                        text: 'Resend Code'.tr,
                         style: AppTextStyles.kSmall10RegularTextStyle.copyWith(
                             color: AppColors.primary, fontSize: 12),
                       ),

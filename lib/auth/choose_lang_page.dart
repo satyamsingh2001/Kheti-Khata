@@ -85,11 +85,11 @@ class _ChooseLangState extends State<ChooseLang> {
                   ),
                   (value == index)  ? const Icon(
             Icons.check_circle_outlined,
-            color: AppColors.white100,
+            color: AppColors.primary60,
             )
                 : const Icon(
             Icons.circle_outlined,
-            color: AppColors.primary60,
+            color: AppColors.white100,
           ),
 
                 ],

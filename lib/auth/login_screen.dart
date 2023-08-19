@@ -19,10 +19,12 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController _phoneNumberController = TextEditingController();
+  final TextEditingController _phoneNumberController = TextEditingController();
 
   late String? phoneNumber;
-  String ntoken = " ";
+  late String? _textInput;
+  var phone = "";
+  String nToken = " ";
 
   @override
   void initState() {
@@ -33,9 +35,9 @@ class _LoginScreenState extends State<LoginScreen> {
   void getToken() async {
     await FirebaseMessaging.instance.getToken().then((token) {
       setState(() {
-        ntoken = token!;
+        nToken = token!;
         if (kDebugMode) {
-          print("my token is $ntoken");
+          print("my token is $nToken");
         }
       });
     });
@@ -64,6 +66,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     .copyWith(color: AppColors.white100)),
             TextFormField(
               controller: _phoneNumberController,
+              onChanged: (text) {
+                setState(() {
+                  _textInput = text;
+                   phone  = text;
+                });
+              },
               maxLength: 10,
               cursorColor: AppColors.primary60,
               keyboardType: TextInputType.phone,
@@ -93,16 +101,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           verificationFailed: (FirebaseAuthException e) {},
                           codeSent: (String verificationId, int? resendToken) {
                             LoginScreen.verify = verificationId;
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    OtpVerification(text: verificationId),
-                              ),
-                            );
+                            Utils.nevergoTo(context,  OtpVerification(text: _textInput!));
                           },
                           codeAutoRetrievalTimeout: (String verificationId) {
-                            Utils.showToastMsg("Failed");
                           },
                         );
                       }

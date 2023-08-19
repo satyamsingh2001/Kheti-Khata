@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:khetikhata/const/constContainer.dart';
-import 'package:khetikhata/bottom_nav_bar_pages/bottom_nav_bar.dart';
+import 'package:khetikhata/bottom_nav_bar/bottom_nav_bar.dart';
 import 'package:khetikhata/utils/Utils.dart';
 import '../../../colors/colors_const.dart';
 import '../../../styles/textstyle_const.dart';
@@ -320,7 +320,7 @@ class _EditProfileState extends State<EditProfile> {
           InkWell(
             onTap: (){
               Utils.replacement(context, BottomPage(currentIndex: 3));
-              Utils.showToastMsg("Profile Updated Successfully".tr);
+              Utils.showToastMsg("Profile Updated Successfully");
             },
             child: ConstantContainer(
               color: AppColors.primary60,

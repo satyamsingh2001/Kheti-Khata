@@ -20,10 +20,8 @@ class LocalNotificationService{
         if (kDebugMode) {
           print("onSelectNotification");
         }
-        if (id != null) {
-          if (kDebugMode) {
-            print("Router Value1234 $id");
-          }
+        if (kDebugMode) {
+          print("Router Value1234 $id");
         }
       },
     );

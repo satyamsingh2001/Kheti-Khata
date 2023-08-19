@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../../../colors/colors_const.dart';
 import '../../../../const/constContainer.dart';
@@ -41,7 +42,6 @@ class _GeneralPostState extends State<GeneralPost> {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: ListView(
-            // crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -56,7 +56,7 @@ class _GeneralPostState extends State<GeneralPost> {
                     ),
                   ),
                   Text(
-                    "New General Post",
+                    "New General Post".tr,
                     style: AppTextStyles.kBody15SemiboldTextStyle.copyWith(color: AppColors.white100),
                   ),
                   ConstantContainer(
@@ -66,7 +66,7 @@ class _GeneralPostState extends State<GeneralPost> {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 5),
                         child: Text(
-                          "Publish",
+                          "Publish".tr,
                           style: AppTextStyles.kBody15RegularTextStyle.copyWith(color: AppColors.white),
                         ),
                       ),
@@ -100,7 +100,7 @@ class _GeneralPostState extends State<GeneralPost> {
                               style: AppTextStyles.kBody15RegularTextStyle.copyWith(color: AppColors.white80),
                             ),
                             TextSpan(
-                              text: '(Farmer)',
+                              text: '(${'Farmer'.tr})',
                               style: AppTextStyles.kBody15SemiboldTextStyle.copyWith(color: AppColors.white100),
                             ),
                           ],
@@ -110,15 +110,15 @@ class _GeneralPostState extends State<GeneralPost> {
                         text: TextSpan(
                           children: <TextSpan>[
                             TextSpan(
-                              text: 'Posting on ',
+                              text: 'Posting on'.tr,
                               style: AppTextStyles.kCaption12RegularTextStyle.copyWith(color: AppColors.white80),
                             ),
                             TextSpan(
-                              text: 'Onion Trading ',
+                              text: ' Onion Trading ',
                               style: AppTextStyles.kCaption12SemiboldTextStyle.copyWith(color: AppColors.white100),
                             ),
                             TextSpan(
-                              text: ' group',
+                              text: 'group'.tr,
                               style: AppTextStyles.kCaption12RegularTextStyle.copyWith(color: AppColors.white80),
                             ),
                           ],
@@ -133,8 +133,8 @@ class _GeneralPostState extends State<GeneralPost> {
                 autofocus: true,
                 cursorColor: AppColors.primary60,
                 maxLines: null,
-                decoration: const InputDecoration(
-                  hintText: "What  do you want to share?",
+                decoration:  InputDecoration(
+                  hintText: "What do you want to share?".tr,
                   enabledBorder: InputBorder.none,
                   focusedBorder: InputBorder.none,
                 ),
@@ -181,18 +181,19 @@ class _GeneralPostState extends State<GeneralPost> {
                 }).toList(),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 8.0, bottom: 8.0),
+                padding: const EdgeInsets.only(left: 8.0, bottom: 8.0,top: 5),
                 child: Text(
-                  "Photos ${_selectedPhotos.length}/$maxPhotos ",
+                  "${'Photos'.tr} ${_selectedPhotos.length}/$maxPhotos ",
                   style: const TextStyle(color: AppColors.white50),
                 ),
               ),
+              const SizedBox(height:10),
               ListTile(
-                onTap: canAddMorePhotos ? _selectPhoto : null,
-                leading: const Icon(Icons.add_photo_alternate_outlined),
-                title: const Text("Add Photos"),
-                tileColor: canAddMorePhotos ? Colors.grey[200] : null,
-              ),
+                onTap: canAddMorePhotos? _selectPhoto:null,
+                leading: canAddMorePhotos ? const Icon(Icons.add_photo_alternate_outlined,color: AppColors.white100,):null,
+                title:  canAddMorePhotos ?Text("Add photos".tr):null,
+
+              )
             ],
           ),
         ),

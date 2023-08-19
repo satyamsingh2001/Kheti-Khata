@@ -15,18 +15,18 @@ class ConstCreatePostWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List title =[
+    List<String> title =[
       "Sell Post",
       "Buy Post",
       "General Post",
     ];
-    List subtitle =[
+    List<String> subtitle =[
       "I want to sell agri produce.",
       "I want to buy agri produce.",
       "I want to share my thoughts.",
 
     ];
-    List ontap =[
+    List onTap =[
       const SellPost(),
       const BuyPost(),
       const GeneralPost(),
@@ -63,15 +63,15 @@ class ConstCreatePostWidget extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: InkWell(
                     onTap: (){
-                      Utils.replacement(context, ontap[index]);
+                      Utils.replacement(context, onTap[index]);
                     },
                     child: ConstantContainer(
                       color: AppColors.white,
                       radiusBorder: 20,
                       borderColor: AppColors.white70,
                       child: ListTile(
-                        title: Text(title[index],style: AppTextStyles.kBody20SemiboldTextStyle.copyWith(color: AppColors.white100),),
-                        subtitle: Text(subtitle[index],style: AppTextStyles.kCaption12RegularTextStyle.copyWith(color: AppColors.white50),),
+                        title: Text(title[index].tr,style: AppTextStyles.kBody20SemiboldTextStyle.copyWith(color: AppColors.white100),),
+                        subtitle: Text(subtitle[index].tr,style: AppTextStyles.kCaption12RegularTextStyle.copyWith(color: AppColors.white50),),
 
 
                       ),

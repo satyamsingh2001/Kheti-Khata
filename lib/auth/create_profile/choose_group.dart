@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:khetikhata/bottom_nav_bar_pages/bottom_nav_bar.dart';
+import 'package:khetikhata/bottom_nav_bar/bottom_nav_bar.dart';
 import 'package:khetikhata/utils/Utils.dart';
 import 'package:get/get.dart';
-
 import '../../../colors/colors_const.dart';
 import '../../../const/constContainer.dart';
 import '../../../styles/textstyle_const.dart';
@@ -155,11 +154,11 @@ class _ChooseGroupState extends State<ChooseGroup> {
                           trailing: _selectedGroupIndices.contains(index)
                               ? const Icon(
                             Icons.check_circle_outline_outlined,
-                            color: AppColors.white100,
+                            color: AppColors.primary60,
                           )
                               : const Icon(
                             Icons.circle_outlined,
-                            color: AppColors.primary60,
+                            color: AppColors.white100,
                           ),
                         ),
                       ),

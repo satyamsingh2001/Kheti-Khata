@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:get/get_utils/get_utils.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:khetikhata/colors/colors_const.dart';
 import 'package:khetikhata/const/constContainer.dart';
@@ -58,7 +59,7 @@ class _AddPhotoWidgetState extends State<AddPhotoWidget> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            CircleAvatar(
+                            const CircleAvatar(
                               radius: 15,
                               backgroundColor: AppColors.primary60,
                               child: Icon(
@@ -67,7 +68,7 @@ class _AddPhotoWidgetState extends State<AddPhotoWidget> {
                               ),
                             ),
                             Text(
-                              "Add photos",
+                              "Add photos".tr,
                               style: AppTextStyles.kBody15RegularTextStyle
                                   .copyWith(color: AppColors.white70),
                             )
@@ -99,9 +100,9 @@ class _AddPhotoWidgetState extends State<AddPhotoWidget> {
                           top: 5,
                           child: CircleAvatar(
                             radius: 15,
-                            backgroundColor: Color(0xff554f51),
+                            backgroundColor: const Color(0xff554f51),
                             child: IconButton(
-                              icon: Icon(
+                              icon: const Icon(
                                 Icons.clear,
                                 size: 10,
                               ),
@@ -119,8 +120,8 @@ class _AddPhotoWidgetState extends State<AddPhotoWidget> {
           ),
         ),
         Text(
-          "Photos ${_selectedPhotos.length}/$maxPhotos - Choose your post's main photo first",
-          style: TextStyle(color: AppColors.white50),
+          "${"Photos".tr} ${_selectedPhotos.length}/$maxPhotos - Choose your post's main photo first",
+          style: const TextStyle(color: AppColors.white50),
         ),
       ],
     );
